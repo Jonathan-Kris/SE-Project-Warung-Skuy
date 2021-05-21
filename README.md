@@ -13,6 +13,15 @@ Mac : ```source env\Scripts\activate```
 
 - To deactivate environtment you can use the command ```deactivate```
 
+## Setting DB
+- Open python terminal ```python```
+
+- Import db instance ```from warungskuy import db```
+
+- Create the db ```db.create_all()```
+
+To inspect the DB you can install DB Browser (SQLite) from https://sqlitebrowser.org/ 
+
 Warung Skuy
 Joe - Ariel - Raymond
 Copyright (C) 2021 
