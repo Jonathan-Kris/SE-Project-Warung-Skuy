@@ -14,6 +14,7 @@ Mac : ```source env\Scripts\activate```
 - To deactivate environtment you can use the command ```deactivate```
 
 ## Setting DB
+### Notes : You only need to do this when there're update to the DB model. No need to run this everytime you want to start the project
 - Open python terminal ```python```
 
 - Import db instance ```from warungskuy import db```
