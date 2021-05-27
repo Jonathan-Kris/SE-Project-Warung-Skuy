@@ -1,0 +1,196 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: roboto;
+}
+
+header {
+  background-color: #28527a;
+}
+
+header img {
+  width: 3rem;
+}
+
+header h1 {
+  font-size: 3rem;
+  color: white;
+  font-weight: 400;
+}
+
+#peminjam-form {
+  display: none;
+}
+
+.auth {
+  min-height: 100vh;
+}
+
+.main {
+  background-color: #3b5670;
+  padding: 5rem;
+}
+
+.logo {
+  color: #fbeeac;
+  font-weight: bold;
+  font-size: 2rem;
+}
+
+.logo div {
+  margin: 0 1rem;
+}
+
+.main .card {
+  border: 12px solid #f4d160;
+  border-radius: 32px;
+  padding: 2rem 20%;
+}
+
+.card-title {
+  font-size: 2rem;
+  color: #28527a;
+}
+
+.card-title span {
+  font-weight: bold;
+}
+
+.btn {
+  background: #f4d160;
+  border-radius: 25px;
+  color: #28527a;
+  font-size: 1.5rem;
+  width: 10rem;
+  height: 3rem;
+  font-weight: bold;
+  margin-top: 3rem;
+}
+
+.main form {
+  height: 100%;
+  margin: 3rem 0;
+}
+
+.form-group {
+  margin-top: 2rem;
+}
+
+.form-control {
+  border: none;
+  border-bottom: 2px solid black;
+  border-radius: 0;
+}
+
+.form-control:focus {
+  outline: none;
+  border: none;
+  border-bottom: 2px solid #28527a;
+  box-shadow: none;
+}
+
+.aside {
+  background: url('../assets/images/pages/auth/background.png') no-repeat;
+  background-size: cover;
+}
+
+.register {
+  background-color: #f1f1f1;
+}
+
+.register input,
+.register select,
+.register input:focus,
+.register select:focus {
+  background-color: #f1f1f1;
+}
+
+.btn-switch {
+  display: inline-block;
+  margin: 0px;
+  position: relative;
+}
+
+.btn-switch > label.btn-switch-inner {
+  margin: 0;
+  width: 12rem;
+  height: 2rem;
+  background: #e0e0e0;
+  border-radius: 30px;
+  overflow: hidden;
+  position: relative;
+  transition: all 0.3s ease;
+  display: block;
+}
+
+.btn-switch > label.btn-switch-inner:before {
+  content: attr(data-investor);
+  position: absolute;
+  font-size: 1rem;
+  font-weight: 500;
+  top: 4px;
+  right: 20px;
+  height: 2rem;
+}
+
+.btn-switch > label.btn-switch-inner:after {
+  content: attr(data-peminjam);
+  width: 6rem;
+  height: 2rem;
+  background: #fff;
+  border: 5px solid #f4d160;
+  border-radius: 30px;
+  position: absolute;
+  left: 0;
+  top: 0;
+  text-align: center;
+  transition: all 0.3s ease;
+  box-shadow: 0px 0px 6px -2px #111;
+}
+
+.btn-switch > .alert {
+  display: none;
+  background: #ff9800;
+  border: none;
+  color: #fff;
+}
+
+.btn-switch input[type='checkbox'] {
+  cursor: pointer;
+  width: 50px;
+  height: 25px;
+  opacity: 0;
+  position: absolute;
+  top: 0;
+  z-index: 1;
+  margin: 0px;
+}
+
+.btn-switch input[type='checkbox']:checked + label.btn-switch-inner {
+  background: #c4c4c4;
+  color: black;
+}
+
+.btn-switch input[type='checkbox']:checked + label.btn-switch-inner:after {
+  content: attr(data-investor);
+  left: 6rem;
+  padding: 0;
+  background: white;
+  border: 5px solid #f4d160;
+}
+
+.btn-switch input[type='checkbox']:checked + label.btn-switch-inner:before {
+  content: attr(data-peminjam);
+  right: auto;
+  left: 20px;
+}
+
+.btn-switch input[type='checkbox']:checked + label.btn-switch-inner {
+  background: #c4c4c4;
+}
+
+.btn-switch input[type='checkbox']:checked ~ .alert {
+  display: block;
+}

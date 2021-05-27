@@ -1,82 +1,200 @@
-{% extends 'base.html' %}
-
-
-{% block title %}
-Register
-{% endblock %}
-
-
-{% block content %}
-
-<body class="text-center">
-    <!-- To display form, you need to create secret key to ensure security -->
-    <div class="container">
-        {{ form.hidden_tag() }}
-        <!-- Flask feture to protect againts CSRF (Cross Site Request Forgery)-->
-
-        <h1 class="h3 mb-3 font-weight-normal"> Buat Akun </h1>
-        <br>
-        <form method="POST" class='form-register'>
-            {{ form.csrf_token }}
-
-            {{ form.username.label() }}
-            {{ form.username(class="form-control", placeholder="User Name") }}
-
-            {{ form.email.label() }}
-            {{ form.email(class="form-control", placeholder="Email") }}
-
-            {{ form.password1.label() }}
-            {{ form.password1(class="form-control", placeholder="Password") }}
-
-            {{ form.password2.label() }}
-            {{ form.password2(class="form-control", placeholder="Konfirmasi Password") }}
-
-            {{ form.phone_number.label() }}
-            {{ form.phone_number(class="form-control", placeholder="Kontak Telepon") }}
-
-            {{ form.fullname.label() }}
-            {{ form.fullname(class="form-control", placeholder="Nama Lengkap") }}
-
-            {{ form.nik.label() }}
-            {{ form.nik(class="form-control", placeholder="Nomor Induk Kependudukan") }}
-
-            {{ form.address.label() }}
-            {{ form.address(class="form-control", placeholder="Alamat Lengkap") }}
-
-            {{ form.birth_place.label() }}
-            {{ form.birth_place(class="form-control", placeholder="Tempat Lahir") }}
-
-            {{ form.birth_date.label() }} <br>
-            {{ form.birth_date(class='datepicker') }} <br>
-
-            {{ form.gender.label() }}
-            <br>
-            {% for subfield in form.gender %}
-            <tr>
-                <td>{{ subfield }}</td>
-                <td>{{ subfield.label }}</td>
-            </tr>
-            {% endfor %}
-            <br>
-
-            {{ form.bank.label() }}
-            {{ form.bank(class="form-control", placeholder="Bank") }}
-
-            {{ form.account_number.label() }}
-            {{ form.account_number(class="form-control", placeholder="Nomor Rekening") }}
-            
-            {{ form.account_name.label() }}
-            {{ form.account_name(class="form-control", placeholder="Nama Pemilik Rekening") }}
-
-            <br>
-            <div class="checkbox mb-3">
-                <h6>Sudah memiliki akun?</h6>
-                <a class="btn btn-sm btn-secondary" href="#">Masuk</a>
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link
+      rel="stylesheet"
+      href="../static/assets/libraries/bootstrap/bootstrap.min.css"
+    />
+    <link rel="stylesheet" href="../static/css/auth.css" />
+  </head>
+  <body>
+    <header>
+      <div
+        class="container py-3 d-flex align-items-center justify-content-between"
+      >
+        <div class="logo">
+          <img src="../static/assets/images/common/logo.png" alt="" />
+          <span>Warung Skuy</span>
+        </div>
+        <h1>DAFTAR</h1>
+        <label class="switch btn-switch">
+          <input
+            type="checkbox"
+            name="color_mode"
+            id="color_mode"
+            value="1"
+            checked
+            onchange="changeForm()"
+          />
+          <label
+            for="color_mode"
+            data-investor="Investor"
+            data-peminjam="Peminjam"
+            class="btn-switch-inner"
+          ></label>
+        </label>
+      </div>
+    </header>
+    <main class="register">
+      <div class="auth container d-flex align-items-center flex-column">
+        <h1 class="card-title py-3">
+          Anda Mendaftar Sebagai <span id="type">Investor</span>
+        </h1>
+        <form method="POST" action="" class="w-100" id="investor-form">
+          {{ form.csrf_token }}
+          <div class="row">
+            <div class="col-lg-6 col-md-12">
+              <div class="form-group">
+                {{ form.username.label() }} {{
+                form.username(class="form-control", placeholder="User Name") }}
+              </div>
+              <div class="form-group">
+                {{ form.fullname.label() }} {{
+                form.fullname(class="form-control", placeholder="Nama Lengkap")
+                }}
+              </div>
+              <div class="form-group">
+                {{ form.email.label() }} {{ form.email(class="form-control",
+                placeholder="Email") }}
+              </div>
+              <div class="form-group">
+                {{ form.phone_number.label() }} {{
+                form.phone_number(class="form-control", placeholder="Kontak
+                Telepon") }}
+              </div>
+              <div class="form-group">
+                {{ form.nik.label() }} {{ form.nik(class="form-control",
+                placeholder="Nomor Induk Kependudukan") }}
+              </div>
+              <div class="form-group">
+                {{ form.password1.label() }} {{
+                form.password1(class="form-control", placeholder="Password") }}
+              </div>
+              <div class="form-group">
+                {{ form.password1.label() }} {{
+                form.password1(class="form-control", placeholder="Password") }}
+              </div>
             </div>
-
-            <br>
-            {{ form.submit(class="btn btn-lg btn-block btn-primary") }}
+            <div class="col-lg-6 col-md-12">
+              <div class="form-group">
+                {{ form.address.label() }} {{ form.address(class="form-control",
+                placeholder="Alamat Lengkap") }}
+              </div>
+              <div class="form-group">
+                <label for="tempat-lahir">Tempat Lahir</label>
+                <input type="text" class="form-control" id="tempat-lahir" />
+                <div class="invalid-feedback"></div>
+              </div>
+              <div class="form-group">
+                {{ form.birth_date.label() }} <br />
+                {{ form.birth_date(class='datepicker') }} <br />
+              </div>
+              <div class="form-group">
+                {{ form.gender.label() }}
+                <br />
+                {% for subfield in form.gender %}
+                <tr>
+                  <td>{{ subfield }}</td>
+                  <td>{{ subfield.label }}</td>
+                </tr>
+                {% endfor %}
+                <br />
+              </div>
+              <div class="form-group">
+                {{ form.bank.label() }} {{ form.bank(class="form-control",
+                placeholder="Bank") }}
+              </div>
+              <div class="form-group">
+                {{ form.account_number.label() }} {{
+                form.account_number(class="form-control", placeholder="Nomor
+                Rekening") }}
+              </div>
+              <div class="form-group">
+                {{ form.account_name.label() }} {{
+                form.account_name(class="form-control", placeholder="Nama
+                Pemilik Rekening") }}
+              </div>
+            </div>
+          </div>
+          <div class="text-center mt-2">
+            <input type="checkbox" name="" id="agree" />
+            <label for="agree">Setejui untuk bergabung</label>
+          </div>
+          <div class="text-center">
+            <button class="btn mb-5" type="submit">Masuk</button>
+          </div>
         </form>
-    </div>
-</body>
-{% endblock %}
+        <form action="" class="w-100" id="peminjam-form">
+          <div class="row">
+            <div class="col-lg-6 col-md-12">
+              <div class="form-group">
+                <label for="username">Username</label>
+                <input type="text" class="form-control" id="username" />
+                <div class="invalid-feedback"></div>
+              </div>
+              <div class="form-group">
+                <label for="nama">Nama Lengkap</label>
+                <input type="text" class="form-control" id="nama" />
+                <div class="invalid-feedback"></div>
+              </div>
+              <div class="form-group">
+                <label for="email">Email</label>
+                <input type="email" class="form-control" id="email" />
+                <div class="invalid-feedback"></div>
+              </div>
+              <div class="form-group">
+                <label for="telp">Nomor Telepon</label>
+                <input type="tel" class="form-control" id="telp" />
+                <div class="invalid-feedback"></div>
+              </div>
+              <div class="form-group">
+                <label for="tempat-lahir">Tempat Lahir</label>
+                <input type="text" class="form-control" id="tempat-lahir" />
+                <div class="invalid-feedback"></div>
+              </div>
+            </div>
+            <div class="col-lg-6 col-md-12">
+              <div class="form-group">
+                <label for="tanggal-lahir">Tanggal Lahir</label>
+                <input type="date" class="form-control" id="tanggal-lahir" />
+                <div class="invalid-feedback"></div>
+              </div>
+              <div class="form-group">
+                <label for="jenis-kelamin">Jenis Kelamin</label>
+                <select id="jenis-kelamin" class="form-control">
+                  <option selected disabled>Pilih</option>
+                  <option value="Laki-laki">Laki-laki</option>
+                  <option value="Perempuan">Perempuan</option>
+                </select>
+                <div class="invalid-feedback"></div>
+              </div>
+              <div class="form-group">
+                <label for="pass">Kata Sandi</label>
+                <input type="password" class="form-control" id="pass" />
+                <div class="invalid-feedback"></div>
+              </div>
+              <div class="form-group">
+                <label for="confirm">Ulangi Kata Sandi</label>
+                <input type="password" class="form-control" id="confirm" />
+                <div class="invalid-feedback"></div>
+              </div>
+            </div>
+          </div>
+          <div class="text-center mt-2">
+            <input type="checkbox" name="" id="agree" />
+            <label for="agree">Setejui untuk bergabung</label>
+          </div>
+          <div class="text-center">
+            <button class="btn mb-5" type="submit">Masuk</button>
+          </div>
+        </form>
+      </div>
+    </main>
+    <script src="../static/assets/libraries/jquery/jquery.min.js"></script>
+    <script src="../static/js/pages/auth.js"></script>
+  </body>
+</html>
