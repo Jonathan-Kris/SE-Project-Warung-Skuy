@@ -119,7 +119,7 @@ def pendanaan_page():
 
 @app.route('/pinjaman')
 def pinjaman_page():
-    return render_template('pinjaman.html')
+    return render_template('pinjaman/main.html')
 
 @app.route('/cara-kerja')
 def cara_kerja_page():

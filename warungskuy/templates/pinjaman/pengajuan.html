@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Pengajuan Peminjaman
+{% endblock %}
+
+{% block content %}
+
+<body class="text-center">
+    <!-- To display form, you need to create secret key to ensure security -->
+    <div class="container">
+        {{ form.hidden_tag() }}
+        <!-- Flask feture to protect againts CSRF (Cross Site Request Forgery)-->
+
+        <h1 class="h3 mb-3 font-weight-normal"> Pengajuan Peminjaman </h1>
+        <br>
+        <form method="POST" class='form-register'>
+            {{ form.csrf_token }}
+
+            
+        </form>
+    </div>
+</body>
+{% endblock %}
