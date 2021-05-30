@@ -33,118 +33,118 @@
       </h1>
 
       <!-- Form Investor -->
-      {{ investorForm.hidden_tag() }}
+      {{ lenderForm.hidden_tag() }}
       <form method="POST" action="" class="w-100" id="investor-form">
-        {{ investorForm.csrf_token }}
+        {{ lenderForm.csrf_token }}
         <div class="row">
           <div class="col-lg-6 col-md-12">
             <div class="form-group">
-              {{ investorForm.username.label() }}
-              {{ investorForm.username(class="form-control", placeholder="User Name") }}
-              {% if investorForm.username.errors %}
-              <div class="error-msg"> {% for error in investorForm.username.errors %} {{ error }} {% endfor %} </div>
+              {{ lenderForm.username.label() }}
+              {{ lenderForm.username(class="form-control", placeholder="User Name") }}
+              {% if lenderForm.username.errors %}
+              <div class="error-msg"> {% for error in lenderForm.username.errors %} {{ error }} {% endfor %} </div>
               {% endif %}
             </div>
             <div class="form-group">
-              {{ investorForm.fullname.label() }}
-              {{ investorForm.fullname(class="form-control", placeholder="Nama Lengkap") }}
-              {% if investorForm.fullname.errors %}
-              <div class="error-msg"> {% for error in investorForm.fullname.errors %} {{ error }} {% endfor %} </div>
+              {{ lenderForm.fullname.label() }}
+              {{ lenderForm.fullname(class="form-control", placeholder="Nama Lengkap") }}
+              {% if lenderForm.fullname.errors %}
+              <div class="error-msg"> {% for error in lenderForm.fullname.errors %} {{ error }} {% endfor %} </div>
               {% endif %}
             </div>
             <div class="form-group">
-              {{ investorForm.email.label() }}
-              {{ investorForm.email(class="form-control", placeholder="Email") }}
-              {% if investorForm.email.errors %}
-              <div class="error-msg"> {% for error in investorForm.email.errors %} {{ error }} {% endfor %} </div>
+              {{ lenderForm.email.label() }}
+              {{ lenderForm.email(class="form-control", placeholder="Email") }}
+              {% if lenderForm.email.errors %}
+              <div class="error-msg"> {% for error in lenderForm.email.errors %} {{ error }} {% endfor %} </div>
               {% endif %}
             </div>
             <div class="form-group">
-              {{ investorForm.phone_number.label() }}
-              {{ investorForm.phone_number(class="form-control", placeholder="Kontak Telepon") }}
-              {% if investorForm.phone_number.errors %}
-              <div class="error-msg"> {% for error in investorForm.phone_number.errors %} {{ error }} {% endfor %}
+              {{ lenderForm.phone_number.label() }}
+              {{ lenderForm.phone_number(class="form-control", placeholder="Kontak Telepon") }}
+              {% if lenderForm.phone_number.errors %}
+              <div class="error-msg"> {% for error in lenderForm.phone_number.errors %} {{ error }} {% endfor %}
               </div>
               {% endif %}
             </div>
             <div class="form-group">
-              {{ investorForm.nik.label() }}
-              {{ investorForm.nik(class="form-control", placeholder="Nomor Induk Kependudukan") }}
-              {% if investorForm.nik.errors %}
-              <div class="error-msg"> {% for error in investorForm.nik.errors %} {{ error }} {% endfor %} </div>
+              {{ lenderForm.nik.label() }}
+              {{ lenderForm.nik(class="form-control", placeholder="Nomor Induk Kependudukan") }}
+              {% if lenderForm.nik.errors %}
+              <div class="error-msg"> {% for error in lenderForm.nik.errors %} {{ error }} {% endfor %} </div>
               {% endif %}
             </div>
             <div class="form-group">
-              {{ investorForm.password1.label() }}
-              {{ investorForm.password1(class="form-control", placeholder="Password") }}
-              {% if investorForm.password1.errors %}
-              <div class="error-msg"> {% for error in investorForm.password1.errors %} {{ error }} {% endfor %} </div>
+              {{ lenderForm.password1.label() }}
+              {{ lenderForm.password1(class="form-control", placeholder="Password") }}
+              {% if lenderForm.password1.errors %}
+              <div class="error-msg"> {% for error in lenderForm.password1.errors %} {{ error }} {% endfor %} </div>
               {% endif %}
             </div>
             <div class="form-group">
-              {{ investorForm.password2.label() }}
-              {{ investorForm.password2(class="form-control", placeholder="Konfirmasi Password") }}
-              {% if investorForm.password2.errors %}
-              <div class="error-msg"> {% for error in investorForm.password2.errors %} {{ error }} {% endfor %} </div>
+              {{ lenderForm.password2.label() }}
+              {{ lenderForm.password2(class="form-control", placeholder="Konfirmasi Password") }}
+              {% if lenderForm.password2.errors %}
+              <div class="error-msg"> {% for error in lenderForm.password2.errors %} {{ error }} {% endfor %} </div>
               {% endif %}
             </div>
           </div>
           <div class="col-lg-6 col-md-12">
             <div class="form-group">
-              {{ investorForm.address.label() }}
-              {{ investorForm.address(class="form-control", placeholder="Alamat Lengkap") }}
-              {% if investorForm.address.errors %}
-              <div class="error-msg"> {% for error in investorForm.address.errors %} {{ error }} {% endfor %} </div>
+              {{ lenderForm.address.label() }}
+              {{ lenderForm.address(class="form-control", placeholder="Alamat Lengkap") }}
+              {% if lenderForm.address.errors %}
+              <div class="error-msg"> {% for error in lenderForm.address.errors %} {{ error }} {% endfor %} </div>
               {% endif %}
             </div>
             <div class="form-group">
-              {{ investorForm.birth_place.label() }}
-              {{ investorForm.birth_place(class="form-control", placeholder="Tempat Lahir") }}
-              {% if investorForm.birth_place.errors %}
-              <div class="error-msg"> {% for error in investorForm.birth_place.errors %} {{ error }} {% endfor %} </div>
+              {{ lenderForm.birth_place.label() }}
+              {{ lenderForm.birth_place(class="form-control", placeholder="Tempat Lahir") }}
+              {% if lenderForm.birth_place.errors %}
+              <div class="error-msg"> {% for error in lenderForm.birth_place.errors %} {{ error }} {% endfor %} </div>
               {% endif %}
             </div>
             <div class="form-group">
-              {{ investorForm.birth_date.label() }} <br />
-              {{ investorForm.birth_date(class='datepicker') }} <br />
-              {% if investorForm.birth_date.errors %}
-              <div class="error-msg"> {% for error in investorForm.birth_date.errors %} {{ error }} {% endfor %} </div>
+              {{ lenderForm.birth_date.label() }} <br />
+              {{ lenderForm.birth_date(class='datepicker') }} <br />
+              {% if lenderForm.birth_date.errors %}
+              <div class="error-msg"> {% for error in lenderForm.birth_date.errors %} {{ error }} {% endfor %} </div>
               {% endif %}
             </div>
             <div class="form-group">
-              {{ investorForm.gender.label() }}
+              {{ lenderForm.gender.label() }}
               <br />
-              {% for subfield in investorForm.gender %}
+              {% for subfield in lenderForm.gender %}
               <tr>
                 <td>{{ subfield }}</td>
                 <td>{{ subfield.label }}</td>
               </tr>
               {% endfor %}
               <br />
-              {% if investorForm.gender.errors %}
-              <div class="error-msg"> {% for error in investorForm.gender.errors %} {{ error }} {% endfor %} </div>
+              {% if lenderForm.gender.errors %}
+              <div class="error-msg"> {% for error in lenderForm.gender.errors %} {{ error }} {% endfor %} </div>
               {% endif %}
             </div>
             <div class="form-group">
-              {{ investorForm.bank.label() }}
-              {{ investorForm.bank(class="form-control", placeholder="Bank") }}
-              {% if investorForm.bank.errors %}
-              <div class="error-msg"> {% for error in investorForm.bank.errors %} {{ error }} {% endfor %} </div>
+              {{ lenderForm.bank.label() }}
+              {{ lenderForm.bank(class="form-control", placeholder="Bank") }}
+              {% if lenderForm.bank.errors %}
+              <div class="error-msg"> {% for error in lenderForm.bank.errors %} {{ error }} {% endfor %} </div>
               {% endif %}
             </div>
             <div class="form-group">
-              {{ investorForm.account_number.label() }}
-              {{ investorForm.account_number(class="form-control", placeholder="Nomor Rekening") }}
-              {% if investorForm.account_number.errors %}
-              <div class="error-msg"> {% for error in investorForm.account_number.errors %} {{ error }} {% endfor %}
+              {{ lenderForm.account_number.label() }}
+              {{ lenderForm.account_number(class="form-control", placeholder="Nomor Rekening") }}
+              {% if lenderForm.account_number.errors %}
+              <div class="error-msg"> {% for error in lenderForm.account_number.errors %} {{ error }} {% endfor %}
               </div>
               {% endif %}
             </div>
             <div class="form-group">
-              {{ investorForm.account_name.label() }}
-              {{ investorForm.account_name(class="form-control", placeholder="Nama Pemilik Rekening") }}
-              {% if investorForm.account_name.errors %}
-              <div class="error-msg"> {% for error in investorForm.account_name.errors %} {{ error }} {% endfor %}
+              {{ lenderForm.account_name.label() }}
+              {{ lenderForm.account_name(class="form-control", placeholder="Nama Pemilik Rekening") }}
+              {% if lenderForm.account_name.errors %}
+              <div class="error-msg"> {% for error in lenderForm.account_name.errors %} {{ error }} {% endfor %}
               </div>
               {% endif %}
             </div>
@@ -157,7 +157,7 @@
         </div>
         
         <div class="text-center">
-          {{ investorForm.submit(class="btn mb-5") }}
+          {{ lenderForm.submit(class="btn mb-5") }}
           <!-- <button class="btn mb-5" type="submit">Daftar</button> -->
         </div>
         <br>
@@ -170,82 +170,82 @@
       </form>
 
       <!-- Form Peminjam -->
-      {{ peminjamForm.hidden_tag() }}
+      {{ borrowerForm.hidden_tag() }}
       <form method="POST" action="" class="w-100" id="peminjam-form">
-        {{ peminjamForm.csrf_token }}
+        {{ borrowerForm.csrf_token }}
         <div class="row">
           <div class="col-lg-6 col-md-12">
             <div class="form-group">
-              {{ peminjamForm.username.label() }} <br />
-              {{ peminjamForm.username(class="form-control", placeholder="Username") }} <br />
-              {% if peminjamForm.username.errors %}
-              <div class="error-msg"> {% for error in peminjamForm.username.errors %} {{ error }} {% endfor %} </div>
+              {{ borrowerForm.username.label() }} <br />
+              {{ borrowerForm.username(class="form-control", placeholder="Username") }} <br />
+              {% if borrowerForm.username.errors %}
+              <div class="error-msg"> {% for error in borrowerForm.username.errors %} {{ error }} {% endfor %} </div>
               {% endif %}
             </div>
             <div class="form-group">
-              {{ peminjamForm.fullname.label() }} <br />
-              {{ peminjamForm.fullname(class="form-control", placeholder="Nama Lengkap") }} <br />
-              {% if peminjamForm.username.errors %}
-              <div class="error-msg"> {% for error in peminjamForm.fullname.errors %} {{ error }} {% endfor %} </div>
+              {{ borrowerForm.fullname.label() }} <br />
+              {{ borrowerForm.fullname(class="form-control", placeholder="Nama Lengkap") }} <br />
+              {% if borrowerForm.username.errors %}
+              <div class="error-msg"> {% for error in borrowerForm.fullname.errors %} {{ error }} {% endfor %} </div>
               {% endif %}
             </div>
             <div class="form-group">
-              {{ peminjamForm.email.label() }} <br />
-              {{ peminjamForm.email(class="form-control", placeholder="Email") }} <br />
-              {% if peminjamForm.email.errors %}
-              <div class="error-msg"> {% for error in peminjamForm.email.errors %} {{ error }} {% endfor %} </div>
+              {{ borrowerForm.email.label() }} <br />
+              {{ borrowerForm.email(class="form-control", placeholder="Email") }} <br />
+              {% if borrowerForm.email.errors %}
+              <div class="error-msg"> {% for error in borrowerForm.email.errors %} {{ error }} {% endfor %} </div>
               {% endif %}
             </div>
             <div class="form-group">
-              {{ peminjamForm.phone_number.label() }} <br />
-              {{ peminjamForm.phone_number(class="form-control", placeholder="Nomor Telepon") }} <br />
-              {% if peminjamForm.phone_number.errors %}
-              <div class="error-msg"> {% for error in peminjamForm.phone_number.errors %} {{ error }} {% endfor %}
+              {{ borrowerForm.phone_number.label() }} <br />
+              {{ borrowerForm.phone_number(class="form-control", placeholder="Nomor Telepon") }} <br />
+              {% if borrowerForm.phone_number.errors %}
+              <div class="error-msg"> {% for error in borrowerForm.phone_number.errors %} {{ error }} {% endfor %}
               </div>
               {% endif %}
             </div>
             <div class="form-group">
-              {{ peminjamForm.birth_place.label() }} <br />
-              {{ peminjamForm.birth_place(class="form-control", placeholder="Tanggal Lahir") }} <br />
-              {% if peminjamForm.birth_place.errors %}
-              <div class="error-msg"> {% for error in peminjamForm.birth_place.errors %} {{ error }} {% endfor %} </div>
+              {{ borrowerForm.birth_place.label() }} <br />
+              {{ borrowerForm.birth_place(class="form-control", placeholder="Tanggal Lahir") }} <br />
+              {% if borrowerForm.birth_place.errors %}
+              <div class="error-msg"> {% for error in borrowerForm.birth_place.errors %} {{ error }} {% endfor %} </div>
               {% endif %}
             </div>
           </div>
           <div class="col-lg-6 col-md-12">
             <div class="form-group">
-              {{ peminjamForm.birth_date.label() }} <br />
-              {{ peminjamForm.birth_date(class='datepicker') }} <br />
-              {% if peminjamForm.birth_date.errors %}
-              <div class="error-msg"> {% for error in peminjamForm.birth_date.errors %} {{ error }} {% endfor %} </div>
+              {{ borrowerForm.birth_date.label() }} <br />
+              {{ borrowerForm.birth_date(class='datepicker') }} <br />
+              {% if borrowerForm.birth_date.errors %}
+              <div class="error-msg"> {% for error in borrowerForm.birth_date.errors %} {{ error }} {% endfor %} </div>
               {% endif %}
             </div>
             <div class="form-group">
-              {{ peminjamForm.gender.label() }}
+              {{ borrowerForm.gender.label() }}
               <br />
-              {% for subfield in peminjamForm.gender %}
+              {% for subfield in borrowerForm.gender %}
               <tr>
                 <td>{{ subfield }}</td>
                 <td>{{ subfield.label }}</td>
               </tr>
               {% endfor %}
               <br />
-              {% if peminjamForm.gender.errors %}
-              <div class="error-msg"> {% for error in peminjamForm.gender.errors %} {{ error }} {% endfor %} </div>
+              {% if borrowerForm.gender.errors %}
+              <div class="error-msg"> {% for error in borrowerForm.gender.errors %} {{ error }} {% endfor %} </div>
               {% endif %}
             </div>
             <div class="form-group">
-              {{ peminjamForm.password1.label() }}
-              {{ peminjamForm.password1(class="form-control", placeholder="Password") }}
-              {% if peminjamForm.password1.errors %}
-              <div class="error-msg"> {% for error in peminjamForm.password1.errors %} {{ error }} {% endfor %} </div>
+              {{ borrowerForm.password1.label() }}
+              {{ borrowerForm.password1(class="form-control", placeholder="Password") }}
+              {% if borrowerForm.password1.errors %}
+              <div class="error-msg"> {% for error in borrowerForm.password1.errors %} {{ error }} {% endfor %} </div>
               {% endif %}
             </div>
             <div class="form-group">
-              {{ peminjamForm.password2.label() }}
-              {{ peminjamForm.password2(class="form-control", placeholder="Konfirmasi Password") }}
-              {% if peminjamForm.password2.errors %}
-              <div class="error-msg"> {% for error in peminjamForm.password2.errors %} {{ error }} {% endfor %} </div>
+              {{ borrowerForm.password2.label() }}
+              {{ borrowerForm.password2(class="form-control", placeholder="Konfirmasi Password") }}
+              {% if borrowerForm.password2.errors %}
+              <div class="error-msg"> {% for error in borrowerForm.password2.errors %} {{ error }} {% endfor %} </div>
               {% endif %}
             </div>
           </div>
@@ -255,7 +255,7 @@
           <label for="agree">Setuju untuk bergabung</label>
         </div>
         <div class="text-center">
-          {{ peminjamForm.submit(class="btn") }}
+          {{ borrowerForm.submit(class="btn") }}
         </div>
 
         <div class="text-center mt-2">

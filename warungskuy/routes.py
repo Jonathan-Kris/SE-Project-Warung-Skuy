@@ -1,9 +1,9 @@
 from warungskuy import app
 from flask import render_template, redirect, url_for, flash, request, session
 # Import Item Model
-from warungskuy.models import User, Investor, Peminjam
+from warungskuy.models import User, Lender, Borrower
 # Import Forms
-from warungskuy.forms import RegisterPeminjamForm, RegisterInvestorForm, LoginForm
+from warungskuy.forms import RegisterBorrowerForm, RegisterLenderForm, LoginForm
 # Import Database
 from warungskuy import db
 # Import login manager
@@ -18,30 +18,30 @@ def home_page():
 
 @app.route("/register", methods=['POST', 'GET'])
 def register_page():
-    investorForm = RegisterInvestorForm()
-    peminjamForm = RegisterPeminjamForm()
+    lenderForm = RegisterLenderForm()
+    borrowerForm = RegisterBorrowerForm()
 
-    if investorForm.validate_on_submit():
-        if investorForm.nik.data:
-            user_to_create = Investor(username=investorForm.username.data,
-                                email=investorForm.email.data,
-                                password=investorForm.password1.data,
-                                phone_number=investorForm.phone_number.data,
-                                fullname=investorForm.fullname.data,
-                                nik=investorForm.nik.data,
-                                address=investorForm.address.data,
-                                birth_place=investorForm.birth_place.data,
-                                birth_date=investorForm.birth_date.data,
-                                gender='L' if investorForm.gender.data == 'Laki-Laki' else 'P',
-                                bank=investorForm.bank.data,
-                                account_number=investorForm.account_number.data,
-                                account_name=investorForm.account_name.data,)
+    if lenderForm.validate_on_submit():
+        if lenderForm.nik.data:
+            user_to_create = Lender(username=lenderForm.username.data,
+                                email=lenderForm.email.data,
+                                password=lenderForm.password1.data,
+                                phone_number=lenderForm.phone_number.data,
+                                fullname=lenderForm.fullname.data,
+                                nik=lenderForm.nik.data,
+                                address=lenderForm.address.data,
+                                birth_place=lenderForm.birth_place.data,
+                                birth_date=lenderForm.birth_date.data,
+                                gender='L' if lenderForm.gender.data == 'Laki-Laki' else 'P',
+                                bank=lenderForm.bank.data,
+                                account_number=lenderForm.account_number.data,
+                                account_name=lenderForm.account_name.data,)
 
         db.session.add(user_to_create)
         db.session.commit()
 
         # Adding Session
-        session['account_type'] = 'Investor'
+        session['account_type'] = 'Lender'
 
         # With successful registration, auto logged in user to market
         # login_user(user_to_create)
@@ -50,23 +50,23 @@ def register_page():
 
         return redirect(url_for('login_page'))
 
-    if peminjamForm.validate_on_submit():
-        user_to_create = Peminjam(
-                            username=peminjamForm.username.data,
-                            email=peminjamForm.email.data,
-                            password=peminjamForm.password1.data,
-                            phone_number=peminjamForm.phone_number.data,
-                            fullname=peminjamForm.fullname.data,
-                            birth_place=peminjamForm.birth_place.data,
-                            birth_date=peminjamForm.birth_date.data,
-                            gender='L' if peminjamForm.gender.data == 'Laki-Laki' else 'P',
+    if borrowerForm.validate_on_submit():
+        user_to_create = Borrower(
+                            username=borrowerForm.username.data,
+                            email=borrowerForm.email.data,
+                            password=borrowerForm.password1.data,
+                            phone_number=borrowerForm.phone_number.data,
+                            fullname=borrowerForm.fullname.data,
+                            birth_place=borrowerForm.birth_place.data,
+                            birth_date=borrowerForm.birth_date.data,
+                            gender='L' if borrowerForm.gender.data == 'Laki-Laki' else 'P',
                             )
 
         db.session.add(user_to_create)
         db.session.commit()
 
         # Adding Session
-        session['account_type'] = 'Peminjam'
+        session['account_type'] = 'Borrower'
 
         # With successful registration, auto logged in user to market login_user(user_to_create)
         flash(
@@ -74,7 +74,7 @@ def register_page():
 
         return redirect(url_for('login_page'))
 
-    return render_template('register.html',  investorForm=investorForm, peminjamForm=peminjamForm,)
+    return render_template('register.html',  lenderForm=lenderForm, borrowerForm=borrowerForm,)
 
 
 @app.route('/login', methods=['POST', 'GET'])
@@ -82,13 +82,13 @@ def login_page():
     form = LoginForm()
     if form.validate_on_submit():
         # Check if user is exists
-        investor = Investor.query.filter_by(username=form.username.data).first()
-        peminjam = Peminjam.query.filter_by(username=form.username.data).first()
+        lender = Lender.query.filter_by(username=form.username.data).first()
+        borrower = Borrower.query.filter_by(username=form.username.data).first()
 
-        if(investor):
-            attempted_user = investor
-        elif(peminjam):
-            attempted_user = peminjam
+        if(lender):
+            attempted_user = lender
+        elif(borrower):
+            attempted_user = borrower
         else:
             attempted_user = None
 
@@ -117,9 +117,9 @@ def logout_page():
 def pendanaan_page():
     return render_template('pendanaan.html')
 
-@app.route('/peminjaman')
-def peminjaman_page():
-    return render_template('peminjaman.html')
+@app.route('/pinjaman')
+def pinjaman_page():
+    return render_template('pinjaman.html')
 
 @app.route('/cara-kerja')
 def cara_kerja_page():

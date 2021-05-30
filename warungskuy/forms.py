@@ -2,25 +2,27 @@ from flask_wtf import FlaskForm
 from wtforms import StringField, PasswordField, SubmitField, RadioField, SelectField
 from wtforms.validators import Length, EqualTo, Email, DataRequired, ValidationError
 from wtforms.fields.html5 import DateField
-from warungskuy.models import User, Investor, Peminjam
+from warungskuy.models import User, Lender, Borrower
 
-
-class RegisterInvestorForm(FlaskForm):
+class RegisterLenderForm(FlaskForm):
 
     # Function to catch input error
     # The name validate_[field] is the convention in Flask, so FlaskForm understand this
     # validation is for username
     def validate_username(self, username_to_check):
-        user = Investor.query.filter_by(username=username_to_check.data).first()
+        user = Lender.query.filter_by(username=username_to_check.data).first()
         if(user):
-            raise ValidationError(
-                'Username already exists! Please try a different username')
+            raise ValidationError('Username telah digunakan')
 
     def validate_email(self, email_to_check):
-        email = Investor.query.filter_by(email=email_to_check.data).first()
+        email = Lender.query.filter_by(email=email_to_check.data).first()
         if(email):
-            raise ValidationError(
-                'Email already exists! Please try a different email')
+            raise ValidationError('Email ini telah digunakan')
+
+    def validate_nik(self, nik_to_check):
+        nik = Lender.query.filter_by(nik=nik_to_check.data).first()
+        if(nik):
+            raise ValidationError('NIK ini telah terasosiasi dengan user lain')
 
     username = StringField(label='User Name', validators=[
                            Length(min=2, max=30), DataRequired()])
@@ -54,22 +56,20 @@ class RegisterInvestorForm(FlaskForm):
         label='Nama Pemilik Rekening', validators=[DataRequired()])
     submit = SubmitField(label='Daftar')
 
-class RegisterPeminjamForm(FlaskForm):
+class RegisterBorrowerForm(FlaskForm):
 
     # Function to catch input error
     # The name validate_[field] is the convention in Flask, so FlaskForm understand this
     # validation is for username
     def validate_username(self, username_to_check):
-        user = Peminjam.query.filter_by(username=username_to_check.data).first()
+        user = Borrower.query.filter_by(username=username_to_check.data).first()
         if(user):
-            raise ValidationError(
-                'Username already exists! Please try a different username')
+            raise ValidationError('Username telah digunakan')
 
     def validate_email(self, email_to_check):
-        email = Peminjam.query.filter_by(email=email_to_check.data).first()
+        email = Borrower.query.filter_by(email=email_to_check.data).first()
         if(email):
-            raise ValidationError(
-                'Email already exists! Please try a different email')
+            raise ValidationError('Email ini telah digunakan')
 
     username = StringField(label='User Name', validators=[
                            Length(min=2, max=30), DataRequired()])
