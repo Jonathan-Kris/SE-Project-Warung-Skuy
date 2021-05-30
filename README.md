@@ -23,6 +23,18 @@ Mac : ```source env\Scripts\activate```
 
 To inspect the DB you can install DB Browser (SQLite) from https://sqlitebrowser.org/ 
 
+
+## Updating DB
+
+- open ```python```
+
+- run command :
+    1. ```from warungskuy import db```
+    2. ```db.drop_all()```
+    3. ```db.create_all()```
+
+- If there are more updates to the table, quit python and rerun all the command above
+
 Warung Skuy
 Joe - Ariel - Raymond
 Copyright (C) 2021 
