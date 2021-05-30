@@ -54,4 +54,32 @@ class Lender(User, UserMixin):
 class Borrower(User, UserMixin):
     id = db.Column(db.Integer, primary_key=True)
 
+    # Relation to Loan
+    loan = db.relationship('Loan', backref='loan_requested', lazy=True)
+
+class Loan(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    title = db.Column(db.String(length=75))
+    tenor = db.Column(db.Numeric(10,2))
+    start_loan = db.Column(db.Date())
+    end_loan = db.Column(db.Date())
+
+    nominal = db.Column(db.Integer())
+    interest = db.Column(db.Numeric(10,2))
+
+    loan_reason = db.Column(db.String(length=500))
+    business_desc = db.Column(db.String(length=500))
+    location = db.Column(db.String(length=100))
+    start_year = db.Column(db.String(length=5))
+    business_address = db.Column(db.String(length=150))
+    gross_income = db.Column(db.Integer)
+    net_income = db.Column(db.Integer)
+    modal = db.Column(db.Integer)
+
+    # Relationship to Borrower
+    borrower = db.Column(db.Integer, db.ForeignKey('borrower.id'))
+
+    def __repr__(self):
+        return f"<Loan {self.judul}>"
+
 

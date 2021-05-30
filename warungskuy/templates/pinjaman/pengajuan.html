@@ -14,11 +14,138 @@ Pengajuan Peminjaman
 
         <h1 class="h3 mb-3 font-weight-normal"> Pengajuan Peminjaman </h1>
         <br>
-        <form method="POST" class='form-register'>
+        <!-- Form Investor -->
+        {{ form.hidden_tag() }}
+        <form method="POST" action="" class="w-100" id="investor-form">
             {{ form.csrf_token }}
+            <div class="form-group">
+                {{ form.title.label() }}
+                {{ form.title(class="form-control", placeholder="Bantuan Usaha") }}
+                {% if form.title.errors %}
+                <div class="error-msg"> {% for error in form.title.errors %} {{ error }} {% endfor %}
+                </div>
+                {% endif %}
+            </div>
+            <div class="form-group">
+                {{ form.tenor.label() }}
+                {{ form.tenor(class="form-control", placeholder="Dalam tahun (Float)") }}
+                {% if form.tenor.errors %}
+                <div class="error-msg"> {% for error in form.tenor.errors %} {{ error }} {% endfor %}
+                </div>
+                {% endif %}
+            </div>
+            <div class="form-group">
+                {{ form.start_loan.label() }}
+                {{ form.start_loan(class="form-control", placeholder="DD/MM/YYYY") }}
+                {% if form.start_loan.errors %}
+                <div class="error-msg"> {% for error in form.start_loan.errors %} {{ error }} {% endfor %}
+                </div>
+                {% endif %}
+            </div>
+            <div class="form-group">
+                {{ form.end_loan.label() }}
+                {{ form.end_loan(class="form-control", placeholder="DD/MM/YYYY") }}
+                {% if form.end_loan.errors %}
+                <div class="error-msg"> {% for error in form.end_loan.errors %} {{ error }} {% endfor %}
+                </div>
+                {% endif %}
+            </div>
+            <div class="form-group">
+                {{ form.nominal.label() }}
+                {{ form.nominal(class="form-control", placeholder="Min: 100.000") }}
+                {% if form.nominal.errors %}
+                <div class="error-msg"> {% for error in form.nominal.errors %} {{ error }} {% endfor
+                    %}
+                </div>
+                {% endif %}
+            </div>
+            <div class="form-group">
+                {{ form.interest.label() }}
+                {{ form.interest(class="form-control", placeholder="Ex: 10.00") }}
+                {% if form.interest.errors %}
+                <div class="error-msg"> {% for error in form.interest.errors %} {{ error }} {% endfor %} </div>
+                {% endif %}
+            </div>
+            <div class="form-group">
+                {{ form.loan_reason.label() }}
+                {{ form.loan_reason(class="form-control", placeholder="Ketik dengan jelas dan lengkap") }}
+                {% if form.loan_reason.errors %}
+                <div class="error-msg"> {% for error in form.loan_reason.errors %} {{ error }} {% endfor %}
+                </div>
+                {% endif %}
+            </div>
+            <div class="form-group">
+                {{ form.business_desc.label() }}
+                {{ form.business_desc(class="form-control", placeholder="Ketik dengan jelas dan lengkap") }}
+                {% if form.business_desc.errors %}
+                <div class="error-msg"> {% for error in form.business_desc.errors %} {{ error }} {% endfor %}
+                </div>
+                {% endif %}
+            </div>
+            <div class="form-group">
+                {{ form.location.label() }}
+                {{ form.location(class="form-control", placeholder="DKI Jakarta") }}
+                {% if form.location.errors %}
+                <div class="error-msg"> {% for error in form.location.errors %} {{ error }} {% endfor %}
+                </div>
+                {% endif %}
+            </div>
+            <div class="form-group">
+                {{ form.start_year.label() }}
+                {{ form.start_year(class="form-control", placeholder="2021") }}
+                {% if form.start_year.errors %}
+                <div class="error-msg"> {% for error in form.start_year.errors %} {{ error }} {% endfor
+                    %} </div>
+                {% endif %}
+            </div>
+            <div class="form-group">
+                {{ form.business_address.label() }} <br />
+                {{ form.business_address(class="form-control", placeholder="Ketik dengan jelas dan lengkap") }}
+                <br />
+                {% if form.business_address.errors %}
+                <div class="error-msg"> {% for error in form.business_address.errors %} {{ error }} {% endfor %}
+                </div>
+                {% endif %}
+            </div>
+            <div class="form-group">
+                {{ form.gross_income.label() }}
+                {{ form.gross_income(class="form-control", placeholder="10.000.000") }}
+                {% if form.gross_income.errors %}
+                <div class="error-msg"> {% for error in form.gross_income.errors %} {{ error }} {% endfor %}
+                </div>
+                {% endif %}
+            </div>
+            <div class="form-group">
+                {{ form.net_income.label() }}
+                {{ form.net_income(class="form-control", placeholder="10.000.000") }}
+                {% if form.net_income.errors %}
+                <div class="error-msg"> {% for error in form.net_income.errors %} {{ error }} {%
+                    endfor %}
+                </div>
+                {% endif %}
+            </div>
+            <div class="form-group">
+                {{ form.modal.label() }}
+                {{ form.modal(class="form-control", placeholder="100.000.000") }}
+                {% if form.modal.errors %}
+                <div class="error-msg"> {% for error in form.modal.errors %} {{ error }} {% endfor
+                    %}
+                </div>
+                {% endif %}
+            </div>
+    </div>
 
-            
-        </form>
+    <div class="text-center mt-2">
+        <input type="checkbox" name="" id="agree" />
+        <label for="agree">Setujui untuk bergabung</label>
+    </div>
+
+    <div class="text-center">
+        {{ form.submit(class="btn mb-5") }}
+        <!-- <button class="btn mb-5" type="submit">Daftar</button> -->
+    </div>
+    <br>
+    </form>
     </div>
 </body>
 {% endblock %}
