@@ -194,3 +194,7 @@ header h1 {
 .btn-switch input[type='checkbox']:checked ~ .alert {
   display: block;
 }
+
+.error-msg{
+  color:red
+}

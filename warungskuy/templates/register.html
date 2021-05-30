@@ -1,200 +1,274 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
-    <link
-      rel="stylesheet"
-      href="../static/assets/libraries/bootstrap/bootstrap.min.css"
-    />
-    <link rel="stylesheet" href="../static/css/auth.css" />
-  </head>
-  <body>
-    <header>
-      <div
-        class="container py-3 d-flex align-items-center justify-content-between"
-      >
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Document</title>
+  <link rel="stylesheet" href="../static/assets/libraries/bootstrap/bootstrap.min.css" />
+  <link rel="stylesheet" href="../static/css/auth.css" />
+</head>
+
+<body>
+  <header>
+    <div class="container py-3 d-flex align-items-center justify-content-between">
+      <a href="{{ url_for('home_page') }}">
         <div class="logo">
           <img src="../static/assets/images/common/logo.png" alt="" />
           <span>Warung Skuy</span>
         </div>
-        <h1>DAFTAR</h1>
-        <label class="switch btn-switch">
-          <input
-            type="checkbox"
-            name="color_mode"
-            id="color_mode"
-            value="1"
-            checked
-            onchange="changeForm()"
-          />
-          <label
-            for="color_mode"
-            data-investor="Investor"
-            data-peminjam="Peminjam"
-            class="btn-switch-inner"
-          ></label>
-        </label>
-      </div>
-    </header>
-    <main class="register">
-      <div class="auth container d-flex align-items-center flex-column">
-        <h1 class="card-title py-3">
-          Anda Mendaftar Sebagai <span id="type">Investor</span>
-        </h1>
-        <form method="POST" action="" class="w-100" id="investor-form">
-          {{ form.csrf_token }}
-          <div class="row">
-            <div class="col-lg-6 col-md-12">
-              <div class="form-group">
-                {{ form.username.label() }} {{
-                form.username(class="form-control", placeholder="User Name") }}
-              </div>
-              <div class="form-group">
-                {{ form.fullname.label() }} {{
-                form.fullname(class="form-control", placeholder="Nama Lengkap")
-                }}
-              </div>
-              <div class="form-group">
-                {{ form.email.label() }} {{ form.email(class="form-control",
-                placeholder="Email") }}
-              </div>
-              <div class="form-group">
-                {{ form.phone_number.label() }} {{
-                form.phone_number(class="form-control", placeholder="Kontak
-                Telepon") }}
-              </div>
-              <div class="form-group">
-                {{ form.nik.label() }} {{ form.nik(class="form-control",
-                placeholder="Nomor Induk Kependudukan") }}
-              </div>
-              <div class="form-group">
-                {{ form.password1.label() }} {{
-                form.password1(class="form-control", placeholder="Password") }}
-              </div>
-              <div class="form-group">
-                {{ form.password1.label() }} {{
-                form.password1(class="form-control", placeholder="Password") }}
-              </div>
+      </a>
+      <h1>DAFTAR</h1>
+      <label class="switch btn-switch">
+        <input type="checkbox" name="color_mode" id="color_mode" value="1" checked onchange="changeForm()" />
+        <label for="color_mode" data-investor="Investor" data-peminjam="Peminjam" class="btn-switch-inner"></label>
+      </label>
+    </div>
+  </header>
+  <main class="register">
+    <div class="auth container d-flex align-items-center flex-column">
+      <h1 class="card-title py-3">
+        Anda Mendaftar Sebagai <span id="type">Investor</span>
+      </h1>
+
+      <!-- Form Investor -->
+      {{ investorForm.hidden_tag() }}
+      <form method="POST" action="" class="w-100" id="investor-form">
+        {{ investorForm.csrf_token }}
+        <div class="row">
+          <div class="col-lg-6 col-md-12">
+            <div class="form-group">
+              {{ investorForm.username.label() }}
+              {{ investorForm.username(class="form-control", placeholder="User Name") }}
+              {% if investorForm.username.errors %}
+              <div class="error-msg"> {% for error in investorForm.username.errors %} {{ error }} {% endfor %} </div>
+              {% endif %}
             </div>
-            <div class="col-lg-6 col-md-12">
-              <div class="form-group">
-                {{ form.address.label() }} {{ form.address(class="form-control",
-                placeholder="Alamat Lengkap") }}
+            <div class="form-group">
+              {{ investorForm.fullname.label() }}
+              {{ investorForm.fullname(class="form-control", placeholder="Nama Lengkap") }}
+              {% if investorForm.fullname.errors %}
+              <div class="error-msg"> {% for error in investorForm.fullname.errors %} {{ error }} {% endfor %} </div>
+              {% endif %}
+            </div>
+            <div class="form-group">
+              {{ investorForm.email.label() }}
+              {{ investorForm.email(class="form-control", placeholder="Email") }}
+              {% if investorForm.email.errors %}
+              <div class="error-msg"> {% for error in investorForm.email.errors %} {{ error }} {% endfor %} </div>
+              {% endif %}
+            </div>
+            <div class="form-group">
+              {{ investorForm.phone_number.label() }}
+              {{ investorForm.phone_number(class="form-control", placeholder="Kontak Telepon") }}
+              {% if investorForm.phone_number.errors %}
+              <div class="error-msg"> {% for error in investorForm.phone_number.errors %} {{ error }} {% endfor %}
               </div>
-              <div class="form-group">
-                <label for="tempat-lahir">Tempat Lahir</label>
-                <input type="text" class="form-control" id="tempat-lahir" />
-                <div class="invalid-feedback"></div>
-              </div>
-              <div class="form-group">
-                {{ form.birth_date.label() }} <br />
-                {{ form.birth_date(class='datepicker') }} <br />
-              </div>
-              <div class="form-group">
-                {{ form.gender.label() }}
-                <br />
-                {% for subfield in form.gender %}
-                <tr>
-                  <td>{{ subfield }}</td>
-                  <td>{{ subfield.label }}</td>
-                </tr>
-                {% endfor %}
-                <br />
-              </div>
-              <div class="form-group">
-                {{ form.bank.label() }} {{ form.bank(class="form-control",
-                placeholder="Bank") }}
-              </div>
-              <div class="form-group">
-                {{ form.account_number.label() }} {{
-                form.account_number(class="form-control", placeholder="Nomor
-                Rekening") }}
-              </div>
-              <div class="form-group">
-                {{ form.account_name.label() }} {{
-                form.account_name(class="form-control", placeholder="Nama
-                Pemilik Rekening") }}
-              </div>
+              {% endif %}
+            </div>
+            <div class="form-group">
+              {{ investorForm.nik.label() }}
+              {{ investorForm.nik(class="form-control", placeholder="Nomor Induk Kependudukan") }}
+              {% if investorForm.nik.errors %}
+              <div class="error-msg"> {% for error in investorForm.nik.errors %} {{ error }} {% endfor %} </div>
+              {% endif %}
+            </div>
+            <div class="form-group">
+              {{ investorForm.password1.label() }}
+              {{ investorForm.password1(class="form-control", placeholder="Password") }}
+              {% if investorForm.password1.errors %}
+              <div class="error-msg"> {% for error in investorForm.password1.errors %} {{ error }} {% endfor %} </div>
+              {% endif %}
+            </div>
+            <div class="form-group">
+              {{ investorForm.password2.label() }}
+              {{ investorForm.password2(class="form-control", placeholder="Konfirmasi Password") }}
+              {% if investorForm.password2.errors %}
+              <div class="error-msg"> {% for error in investorForm.password2.errors %} {{ error }} {% endfor %} </div>
+              {% endif %}
             </div>
           </div>
-          <div class="text-center mt-2">
-            <input type="checkbox" name="" id="agree" />
-            <label for="agree">Setejui untuk bergabung</label>
-          </div>
-          <div class="text-center">
-            <button class="btn mb-5" type="submit">Masuk</button>
-          </div>
-        </form>
-        <form action="" class="w-100" id="peminjam-form">
-          <div class="row">
-            <div class="col-lg-6 col-md-12">
-              <div class="form-group">
-                <label for="username">Username</label>
-                <input type="text" class="form-control" id="username" />
-                <div class="invalid-feedback"></div>
-              </div>
-              <div class="form-group">
-                <label for="nama">Nama Lengkap</label>
-                <input type="text" class="form-control" id="nama" />
-                <div class="invalid-feedback"></div>
-              </div>
-              <div class="form-group">
-                <label for="email">Email</label>
-                <input type="email" class="form-control" id="email" />
-                <div class="invalid-feedback"></div>
-              </div>
-              <div class="form-group">
-                <label for="telp">Nomor Telepon</label>
-                <input type="tel" class="form-control" id="telp" />
-                <div class="invalid-feedback"></div>
-              </div>
-              <div class="form-group">
-                <label for="tempat-lahir">Tempat Lahir</label>
-                <input type="text" class="form-control" id="tempat-lahir" />
-                <div class="invalid-feedback"></div>
-              </div>
+          <div class="col-lg-6 col-md-12">
+            <div class="form-group">
+              {{ investorForm.address.label() }}
+              {{ investorForm.address(class="form-control", placeholder="Alamat Lengkap") }}
+              {% if investorForm.address.errors %}
+              <div class="error-msg"> {% for error in investorForm.address.errors %} {{ error }} {% endfor %} </div>
+              {% endif %}
             </div>
-            <div class="col-lg-6 col-md-12">
-              <div class="form-group">
-                <label for="tanggal-lahir">Tanggal Lahir</label>
-                <input type="date" class="form-control" id="tanggal-lahir" />
-                <div class="invalid-feedback"></div>
+            <div class="form-group">
+              {{ investorForm.birth_place.label() }}
+              {{ investorForm.birth_place(class="form-control", placeholder="Tempat Lahir") }}
+              {% if investorForm.birth_place.errors %}
+              <div class="error-msg"> {% for error in investorForm.birth_place.errors %} {{ error }} {% endfor %} </div>
+              {% endif %}
+            </div>
+            <div class="form-group">
+              {{ investorForm.birth_date.label() }} <br />
+              {{ investorForm.birth_date(class='datepicker') }} <br />
+              {% if investorForm.birth_date.errors %}
+              <div class="error-msg"> {% for error in investorForm.birth_date.errors %} {{ error }} {% endfor %} </div>
+              {% endif %}
+            </div>
+            <div class="form-group">
+              {{ investorForm.gender.label() }}
+              <br />
+              {% for subfield in investorForm.gender %}
+              <tr>
+                <td>{{ subfield }}</td>
+                <td>{{ subfield.label }}</td>
+              </tr>
+              {% endfor %}
+              <br />
+              {% if investorForm.gender.errors %}
+              <div class="error-msg"> {% for error in investorForm.gender.errors %} {{ error }} {% endfor %} </div>
+              {% endif %}
+            </div>
+            <div class="form-group">
+              {{ investorForm.bank.label() }}
+              {{ investorForm.bank(class="form-control", placeholder="Bank") }}
+              {% if investorForm.bank.errors %}
+              <div class="error-msg"> {% for error in investorForm.bank.errors %} {{ error }} {% endfor %} </div>
+              {% endif %}
+            </div>
+            <div class="form-group">
+              {{ investorForm.account_number.label() }}
+              {{ investorForm.account_number(class="form-control", placeholder="Nomor Rekening") }}
+              {% if investorForm.account_number.errors %}
+              <div class="error-msg"> {% for error in investorForm.account_number.errors %} {{ error }} {% endfor %}
               </div>
-              <div class="form-group">
-                <label for="jenis-kelamin">Jenis Kelamin</label>
-                <select id="jenis-kelamin" class="form-control">
-                  <option selected disabled>Pilih</option>
-                  <option value="Laki-laki">Laki-laki</option>
-                  <option value="Perempuan">Perempuan</option>
-                </select>
-                <div class="invalid-feedback"></div>
+              {% endif %}
+            </div>
+            <div class="form-group">
+              {{ investorForm.account_name.label() }}
+              {{ investorForm.account_name(class="form-control", placeholder="Nama Pemilik Rekening") }}
+              {% if investorForm.account_name.errors %}
+              <div class="error-msg"> {% for error in investorForm.account_name.errors %} {{ error }} {% endfor %}
               </div>
-              <div class="form-group">
-                <label for="pass">Kata Sandi</label>
-                <input type="password" class="form-control" id="pass" />
-                <div class="invalid-feedback"></div>
-              </div>
-              <div class="form-group">
-                <label for="confirm">Ulangi Kata Sandi</label>
-                <input type="password" class="form-control" id="confirm" />
-                <div class="invalid-feedback"></div>
-              </div>
+              {% endif %}
             </div>
           </div>
-          <div class="text-center mt-2">
-            <input type="checkbox" name="" id="agree" />
-            <label for="agree">Setejui untuk bergabung</label>
+        </div>
+
+        <div class="text-center mt-2">
+          <input type="checkbox" name="" id="agree" />
+          <label for="agree">Setujui untuk bergabung</label>
+        </div>
+        
+        <div class="text-center">
+          {{ investorForm.submit(class="btn mb-5") }}
+          <!-- <button class="btn mb-5" type="submit">Daftar</button> -->
+        </div>
+        <br>
+
+        <div class="text-center mt-2">
+          <p>
+            Sudah memiliki akun? <a class="" href="{{ url_for('login_page') }}">Masuk</a>
+          </p>
+        </div>
+      </form>
+
+      <!-- Form Peminjam -->
+      {{ peminjamForm.hidden_tag() }}
+      <form method="POST" action="" class="w-100" id="peminjam-form">
+        {{ peminjamForm.csrf_token }}
+        <div class="row">
+          <div class="col-lg-6 col-md-12">
+            <div class="form-group">
+              {{ peminjamForm.username.label() }} <br />
+              {{ peminjamForm.username(class="form-control", placeholder="Username") }} <br />
+              {% if peminjamForm.username.errors %}
+              <div class="error-msg"> {% for error in peminjamForm.username.errors %} {{ error }} {% endfor %} </div>
+              {% endif %}
+            </div>
+            <div class="form-group">
+              {{ peminjamForm.fullname.label() }} <br />
+              {{ peminjamForm.fullname(class="form-control", placeholder="Nama Lengkap") }} <br />
+              {% if peminjamForm.username.errors %}
+              <div class="error-msg"> {% for error in peminjamForm.fullname.errors %} {{ error }} {% endfor %} </div>
+              {% endif %}
+            </div>
+            <div class="form-group">
+              {{ peminjamForm.email.label() }} <br />
+              {{ peminjamForm.email(class="form-control", placeholder="Email") }} <br />
+              {% if peminjamForm.email.errors %}
+              <div class="error-msg"> {% for error in peminjamForm.email.errors %} {{ error }} {% endfor %} </div>
+              {% endif %}
+            </div>
+            <div class="form-group">
+              {{ peminjamForm.phone_number.label() }} <br />
+              {{ peminjamForm.phone_number(class="form-control", placeholder="Nomor Telepon") }} <br />
+              {% if peminjamForm.phone_number.errors %}
+              <div class="error-msg"> {% for error in peminjamForm.phone_number.errors %} {{ error }} {% endfor %}
+              </div>
+              {% endif %}
+            </div>
+            <div class="form-group">
+              {{ peminjamForm.birth_place.label() }} <br />
+              {{ peminjamForm.birth_place(class="form-control", placeholder="Tanggal Lahir") }} <br />
+              {% if peminjamForm.birth_place.errors %}
+              <div class="error-msg"> {% for error in peminjamForm.birth_place.errors %} {{ error }} {% endfor %} </div>
+              {% endif %}
+            </div>
           </div>
-          <div class="text-center">
-            <button class="btn mb-5" type="submit">Masuk</button>
+          <div class="col-lg-6 col-md-12">
+            <div class="form-group">
+              {{ peminjamForm.birth_date.label() }} <br />
+              {{ peminjamForm.birth_date(class='datepicker') }} <br />
+              {% if peminjamForm.birth_date.errors %}
+              <div class="error-msg"> {% for error in peminjamForm.birth_date.errors %} {{ error }} {% endfor %} </div>
+              {% endif %}
+            </div>
+            <div class="form-group">
+              {{ peminjamForm.gender.label() }}
+              <br />
+              {% for subfield in peminjamForm.gender %}
+              <tr>
+                <td>{{ subfield }}</td>
+                <td>{{ subfield.label }}</td>
+              </tr>
+              {% endfor %}
+              <br />
+              {% if peminjamForm.gender.errors %}
+              <div class="error-msg"> {% for error in peminjamForm.gender.errors %} {{ error }} {% endfor %} </div>
+              {% endif %}
+            </div>
+            <div class="form-group">
+              {{ peminjamForm.password1.label() }}
+              {{ peminjamForm.password1(class="form-control", placeholder="Password") }}
+              {% if peminjamForm.password1.errors %}
+              <div class="error-msg"> {% for error in peminjamForm.password1.errors %} {{ error }} {% endfor %} </div>
+              {% endif %}
+            </div>
+            <div class="form-group">
+              {{ peminjamForm.password2.label() }}
+              {{ peminjamForm.password2(class="form-control", placeholder="Konfirmasi Password") }}
+              {% if peminjamForm.password2.errors %}
+              <div class="error-msg"> {% for error in peminjamForm.password2.errors %} {{ error }} {% endfor %} </div>
+              {% endif %}
+            </div>
           </div>
-        </form>
-      </div>
-    </main>
-    <script src="../static/assets/libraries/jquery/jquery.min.js"></script>
-    <script src="../static/js/pages/auth.js"></script>
-  </body>
+        </div>
+        <div class="text-center mt-2">
+          <input type="checkbox" name="" id="agree" />
+          <label for="agree">Setuju untuk bergabung</label>
+        </div>
+        <div class="text-center">
+          {{ peminjamForm.submit(class="btn") }}
+        </div>
+
+        <div class="text-center mt-2">
+          <p>
+            Sudah memiliki akun? <a class="" href="{{ url_for('login_page') }}">Masuk</a>
+          </p>
+        </div>
+      </form>
+
+    </div>
+  </main>
+  <script src="../static/assets/libraries/jquery/jquery.min.js"></script>
+  <script src="../static/js/pages/auth.js"></script>
+</body>
+
 </html>

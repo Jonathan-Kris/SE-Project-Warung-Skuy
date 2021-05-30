@@ -1,16 +1,24 @@
 {% extends 'layouts/auth.html' %} {% block card_title %} Masuk {% endblock %}
 {%block form%}
+{{ form.hidden_tag() }}
 <form method="POST" class="d-flex flex-column">
   {{ form.csrf_token }}
   <div class="form-group">
-    {{ form.username.label() }}{{ form.username(class="form-control",
-    placeholder="User Name") }}
+    {{ form.username.label() }}
+    {{ form.username(class="form-control", placeholder="User Name") }}
   </div>
   <div class="form-group">
-    {{ form.password.label() }} {{ form.password(class="form-control",
-    placeholder="Password") }}
+    {{ form.password.label() }} 
+    {{ form.password(class="form-control", placeholder="Password") }}
   </div>
+  <!-- Fitur Masih Belum Ada -->
   <a href="/forget-password.html">Lupa Kata Sandi?</a>
   <div class="text-center">{{ form.submit(class="btn") }}</div>
+
+  <div class="text-center mt-2">
+    <p>
+      Sudah memiliki akun? <a class="" href="{{ url_for('register_page') }}">Daftar</a>
+    </p>
+  </div>
 </form>
 {% endblock %}

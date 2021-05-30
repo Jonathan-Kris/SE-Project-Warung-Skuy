@@ -2,22 +2,22 @@ from flask_wtf import FlaskForm
 from wtforms import StringField, PasswordField, SubmitField, RadioField, SelectField
 from wtforms.validators import Length, EqualTo, Email, DataRequired, ValidationError
 from wtforms.fields.html5 import DateField
-from warungskuy.models import User
+from warungskuy.models import User, Investor, Peminjam
 
 
-class RegisterForm(FlaskForm):
+class RegisterInvestorForm(FlaskForm):
 
     # Function to catch input error
     # The name validate_[field] is the convention in Flask, so FlaskForm understand this
     # validation is for username
     def validate_username(self, username_to_check):
-        user = User.query.filter_by(username=username_to_check.data).first()
+        user = Investor.query.filter_by(username=username_to_check.data).first()
         if(user):
             raise ValidationError(
                 'Username already exists! Please try a different username')
 
     def validate_email(self, email_to_check):
-        email = User.query.filter_by(email=email_to_check.data).first()
+        email = Investor.query.filter_by(email=email_to_check.data).first()
         if(email):
             raise ValidationError(
                 'Email already exists! Please try a different email')
@@ -40,7 +40,7 @@ class RegisterForm(FlaskForm):
         DataRequired()])
     birth_place = StringField(label='Tempat Lahir', validators=[
         DataRequired()])
-    birth_date = DateField('DatePicker', format='%Y-%m-%d', validators=[
+    birth_date = DateField('Tanggal Lahir', format='%Y-%m-%d', validators=[
         DataRequired()])
     gender = RadioField(label='Jenis Kelamin', choices=['Laki-Laki', 'Perempuan'], validators=[
         DataRequired()])
@@ -52,6 +52,43 @@ class RegisterForm(FlaskForm):
         label='Nomor Rekening', validators=[DataRequired()])
     account_name = StringField(
         label='Nama Pemilik Rekening', validators=[DataRequired()])
+    submit = SubmitField(label='Daftar')
+
+class RegisterPeminjamForm(FlaskForm):
+
+    # Function to catch input error
+    # The name validate_[field] is the convention in Flask, so FlaskForm understand this
+    # validation is for username
+    def validate_username(self, username_to_check):
+        user = Peminjam.query.filter_by(username=username_to_check.data).first()
+        if(user):
+            raise ValidationError(
+                'Username already exists! Please try a different username')
+
+    def validate_email(self, email_to_check):
+        email = Peminjam.query.filter_by(email=email_to_check.data).first()
+        if(email):
+            raise ValidationError(
+                'Email already exists! Please try a different email')
+
+    username = StringField(label='User Name', validators=[
+                           Length(min=2, max=30), DataRequired()])
+    email = StringField(label='Email', validators=[
+                        Email(), DataRequired()])
+    password1 = PasswordField(label='Password', validators=[
+                              Length(min=6), DataRequired()])
+    password2 = PasswordField(label='Konfirmasi Password', validators=[
+                              EqualTo('password1'), DataRequired()])
+    phone_number = StringField(label='Kontak Telepon', validators=[
+        Length(min=11, max=13), DataRequired()])
+    fullname = StringField(label='Nama Lengkap', validators=[
+                           Length(min=2, max=100), DataRequired()])                      
+    birth_place = StringField(label='Tempat Lahir', validators=[
+        DataRequired()])
+    birth_date = DateField('Tanggal Lahir', format='%Y-%m-%d', validators=[
+        DataRequired()])
+    gender = RadioField(label='Jenis Kelamin', choices=['Laki-Laki', 'Perempuan'], validators=[
+        DataRequired()])
     submit = SubmitField(label='Daftar')
 
 

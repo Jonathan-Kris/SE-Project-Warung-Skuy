@@ -1,38 +1,35 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Warung Skuy</title>
-    <link
-      rel="stylesheet"
-      href="../../static/assets/libraries/bootstrap/bootstrap.min.css"
-    />
-    <link rel="stylesheet" href="../../static/css/auth.css" />
-  </head>
-  <body>
-    <section class="container-fluid">
-      <div class="row auth">
-        <div class="main col-lg-12 col-xl-6 align-items-center">
-          <div
-            class="logo d-flex align-items-center justify-content-center mb-5"
-          >
-            <img
-              src="../../static/assets/images/common/logo.png"
-              alt="Warung Skuy Logo"
-            />
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Warung Skuy</title>
+  <link rel="stylesheet" href="../../static/assets/libraries/bootstrap/bootstrap.min.css" />
+  <link rel="stylesheet" href="../../static/css/auth.css" />
+</head>
+
+<body>
+  <section class="container-fluid">
+    <div class="row auth">
+      <div class="main col-lg-12 col-xl-6 align-items-center">
+        <a href="{{ url_for('home_page') }}">
+          <div class="logo d-flex align-items-center justify-content-center mb-5">
+            <img src="../../static/assets/images/common/logo.png" alt="Warung Skuy Logo" />
             <div>Warung Skuy</div>
           </div>
-          <div class="card">
-            <div class="card-title text-center">
-              {% block card_title %} {% endblock %}
-            </div>
-            {% block form %} {% endblock %}
+        </a>
+        <div class="card">
+          <div class="card-title text-center">
+            {% block card_title %} {% endblock %}
           </div>
+          {% block form %} {% endblock %}
         </div>
-        <div class="aside col-6 d-none d-xl-block"></div>
       </div>
-    </section>
-  </body>
+      <div class="aside col-6 d-none d-xl-block"></div>
+    </div>
+  </section>
+</body>
+
 </html>
