@@ -33,6 +33,15 @@
             {% if current_user.is_authenticated %}
             <ul class="navbar-nav">
                 <li class="nav-item">
+                    <a class="nav-link" href="{{ url_for('pendanaan_page') }}">Pendanaan</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ url_for('peminjaman_page') }}">Peminjaman</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ url_for('cara_kerja_page') }}">Cara Kerja</a>
+                </li>
+                <li class="nav-item">
                     <a class="nav-link">Welcome, {{ current_user.username }}</a>
                 </li>
                 <li class="nav-item">
@@ -41,6 +50,15 @@
             </ul>
             {% else %}
             <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Pendanaan</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Peminjaman</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Cara Kerja</a>
+                </li>
                 <li class="nav-item">
                     <a class="nav-link" href="{{ url_for('login_page') }}">Masuk</a>
                 </li>
