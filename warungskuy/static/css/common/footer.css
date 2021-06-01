@@ -1,0 +1,48 @@
+html,
+body {
+  margin: 0;
+  padding: 0;
+  font-family: Roboto;
+  background-color: #f1f1f1;
+}
+
+/* Footer */
+.sosmed {
+  padding-top: 3rem;
+  padding-bottom: 0.1rem;
+}
+
+.sosmed-text {
+  font-weight: bold;
+  font-size: large;
+}
+
+.fa img {
+  width: 60px;
+}
+
+.fa-text {
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 12px;
+  color: white;
+  padding: 0.5rem 2.5rem;
+}
+
+.copyright {
+  font-size: small;
+}
+
+@media all and (max-width: 575.98px) {
+  .fa img {
+    width: 30px;
+  }
+
+  .fa-text {
+    padding: 0.5rem 0.1rem;
+    font-size: 10px;
+  }
+
+  .copyright {
+    font-size: 7px;
+  }
+}
