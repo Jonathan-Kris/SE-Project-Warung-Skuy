@@ -1,5 +1,5 @@
 from flask_wtf import FlaskForm
-from wtforms import StringField, PasswordField, SubmitField, RadioField, SelectField, DecimalField, IntegerField, FloatField
+from wtforms import StringField, PasswordField, SubmitField, RadioField, SelectField, DecimalField, IntegerField, FloatField, TextAreaField, TextField
 from wtforms.validators import Length, EqualTo, Email, DataRequired, ValidationError
 from wtforms.fields.html5 import DateField
 from warungskuy.models import User, Lender, Borrower
@@ -107,8 +107,8 @@ class LoanForm(FlaskForm):
     end_loan = DateField(label="Batas Akhir Pinjaman", validators=[])
     nominal = IntegerField(label="Nominal Pinjaman", validators=[])
     interest = FloatField(label="Bunga Efektif", validators=[])
-    loan_reason = StringField(label="Alasan Pinjaman", validators=[])
-    business_desc = StringField(label="Keterangan Usaha", validators=[])
+    loan_reason = TextAreaField(label="Alasan Pinjaman", validators=[])
+    business_desc = TextAreaField(label="Keterangan Usaha", validators=[])
     location = StringField(label="Domisili", validators=[])
     start_year = StringField(label="Tahun Rintis", validators=[])
     business_address = StringField(

@@ -66,7 +66,7 @@ class Borrower(User, UserMixin):
 class Loan(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     title = db.Column(db.String(length=75))
-    tenor = db.Column(db.Numeric(10, 2))
+    tenor = db.Column(db.Integer())
     start_loan = db.Column(db.Date())
     end_loan = db.Column(db.Date())
 

@@ -1,0 +1,113 @@
+html,
+body {
+  margin: 0;
+  padding: 0;
+  font-family: Roboto;
+  background-color: #F6F6F6;
+}
+
+.form-pengajuan-peminjaman {
+    padding: 6rem 4rem;
+    padding-bottom: 10rem;
+}
+
+.container-title {
+    font-weight: bolder;
+}
+
+.form-label {
+    font-size: larger;
+    font-weight: bold;
+}
+
+.form-field {
+    padding: 2rem 4rem;
+}
+
+.form-control {
+    border-radius: 1rem;
+}
+
+.form-text {
+    font-size: normal;
+    color: gray;
+}
+
+.aggrement-label {
+    font-size: large;
+    font-weight: bold;
+}
+
+.btn-primary {
+    background-color: #F4D160;
+    border-color: #F4D160;
+    color: black;
+    font-size: larger;
+    border-radius: 2rem;
+    width: 15rem;
+    height: 3rem;
+}
+
+.btn-primary:hover {
+    background-color: #8AC4D0 ;
+    border-color: #8AC4D0 ;
+    color: white;
+    font-size: larger;
+    border-radius: 2rem;
+    width: 15rem;
+    height: 3rem;
+}
+
+@media all and (max-width: 575.98px) {
+    .form-pengajuan-peminjaman {
+        padding: 3rem 2rem;
+        padding-bottom: 5rem;
+    }
+    
+    .container-title {
+        font-weight: bold;
+    }
+    
+    .form-label {
+        font-size: larger;
+        font-weight: bold;
+    }
+    
+    .form-field {
+        padding: 1.5rem 1rem;
+    }
+    
+    .form-control {
+        border-radius: 1rem;
+    }
+    
+    .form-text {
+        font-size: normal;
+        color: gray;
+    }
+    
+    .aggrement-label {
+        font-size: medium;
+        font-weight: bold;
+    }
+    
+    .btn-primary {
+        background-color: #F4D160;
+        border-color: #F4D160;
+        color: black;
+        font-size: larger;
+        border-radius: 2rem;
+        width: 15rem;
+        height: 3rem;
+    }
+    
+    .btn-primary:hover {
+        background-color: #8AC4D0 ;
+        border-color: #8AC4D0 ;
+        color: white;
+        font-size: larger;
+        border-radius: 2rem;
+        width: 15rem;
+        height: 3rem;
+    }
+  }
