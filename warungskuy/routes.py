@@ -79,6 +79,9 @@ def login_page():
         lender = Lender.query.filter_by(username=form.username.data).first()
         borrower = Borrower.query.filter_by(username=form.username.data).first()
 
+        print('Lender :', lender)
+        print('Borrower :', borrower)
+
         if(lender):
             attempted_user = lender
         elif(borrower):
@@ -94,16 +97,16 @@ def login_page():
 
         if (attempted_user and attempted_user.password_hash == form.password.data):
             login_user(attempted_user)
-            print(current_user)
+            print('Current User : ', current_user.username)
             flash(
-                f"Success! You're login as {attempted_user.username}", category='success')
+                f"Success! You're login as {current_user.username}", category='success')
             return redirect(url_for('home_page'))
 
         else:
             flash('Username and password not matched! Please try again',
                   category='danger')
 
-    return render_template('login.html', form=form, current_user=current_user)
+    return render_template('login.html', form=form)
 
 @app.route('/logout')
 def logout_page():

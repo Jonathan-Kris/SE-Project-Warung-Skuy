@@ -4,12 +4,14 @@ from warungskuy import bcrypt
 from sqlalchemy.sql import func
 from flask_login import UserMixin
 from flask import session
+from sqlalchemy_utils import UUIDType
+import uuid
 
 
 @login_manager.user_loader
 def load_user(user_id):
-    lender = Lender.query.get(int(user_id))
-    borrower = Borrower.query.get(int(user_id))
+    lender = Lender.query.get(user_id)
+    borrower = Borrower.query.get(user_id)
 
     if(lender):
         return lender
@@ -46,7 +48,7 @@ class User(db.Model):
 
 
 class Lender(User, UserMixin):
-    id = db.Column(db.Integer, primary_key=True)
+    id = db.Column(db.String(length=32), primary_key=True, default=str(uuid.uuid4()))
     nik = db.Column(db.String(length=16), unique=True)
     address = db.Column(db.String(length=255))
     bank = db.Column(db.String(length=5))
@@ -55,7 +57,7 @@ class Lender(User, UserMixin):
 
 
 class Borrower(User, UserMixin):
-    id = db.Column(db.Integer, primary_key=True)
+    id = db.Column(db.String(length=32), primary_key=True, default=str(uuid.uuid4()))
 
     # Relation to Loan
     loan = db.relationship('Loan', backref='loan_requested', lazy=True)
@@ -81,7 +83,7 @@ class Loan(db.Model):
     modal = db.Column(db.Integer)
 
     # Relationship to Borrower
-    borrower = db.Column(db.Integer, db.ForeignKey('borrower.id'))
+    borrower = db.Column(db.String(length=32), db.ForeignKey('borrower.id'))
 
     def __repr__(self):
         return f"<Loan {self.judul}>"
