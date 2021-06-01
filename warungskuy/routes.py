@@ -24,7 +24,8 @@ def register_page():
     if lenderForm.validate_on_submit():
         user_to_create = Lender(username=lenderForm.username.data,
                             email=lenderForm.email.data,
-                            password=lenderForm.password1.data,
+                            #password=lenderForm.password1.data, #DISABLE FOR TESTING PURPOSE ONLY
+                            password_hash=borrowerForm.password1.data,
                             phone_number=lenderForm.phone_number.data,
                             fullname=lenderForm.fullname.data,
                             nik=lenderForm.nik.data,
@@ -39,18 +40,17 @@ def register_page():
         db.session.add(user_to_create)
         db.session.commit()
 
-        # With successful registration, auto logged in user to market
-        # login_user(user_to_create)
         flash(
             f"Account created successfully! You are now logged in as {user_to_create.username}", category="success")
 
+        # With successful registration, redirect user to login page
         return redirect(url_for('login_page'))
 
     if borrowerForm.validate_on_submit():
         user_to_create = Borrower(
                             username=borrowerForm.username.data,
                             email=borrowerForm.email.data,
-                            #password=borrowerForm.password1.data,
+                            #password=borrowerForm.password1.data, #DISABLE FOR TESTING PURPOSE ONLY
                             password_hash=borrowerForm.password1.data,
                             phone_number=borrowerForm.phone_number.data,
                             fullname=borrowerForm.fullname.data,
@@ -62,10 +62,10 @@ def register_page():
         db.session.add(user_to_create)
         db.session.commit()
 
-        # With successful registration, auto logged in user to market login_user(user_to_create)
         flash(
             f"Account created successfully! You are now logged in as {user_to_create.username}", category="success")
 
+        # With successful registration, redirect user to login page
         return redirect(url_for('login_page'))
 
     return render_template('register.html',  lenderForm=lenderForm, borrowerForm=borrowerForm,)
