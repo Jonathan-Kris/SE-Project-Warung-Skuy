@@ -39,9 +39,6 @@ def register_page():
         db.session.add(user_to_create)
         db.session.commit()
 
-        # Adding Session
-        session['account_type'] = 'Lender'
-
         # With successful registration, auto logged in user to market
         # login_user(user_to_create)
         flash(
@@ -65,9 +62,6 @@ def register_page():
         db.session.add(user_to_create)
         db.session.commit()
 
-        # Adding Session
-        session['account_type'] = 'Borrower'
-
         # With successful registration, auto logged in user to market login_user(user_to_create)
         flash(
             f"Account created successfully! You are now logged in as {user_to_create.username}", category="success")
@@ -90,7 +84,7 @@ def login_page():
         elif(borrower):
             attempted_user = borrower
         else:
-            attempted_user = None
+            flash(f"Oops! Sorry there are problems detecting the user")
 
         # print(attempted_user.password_hash)
         # DISABLED FOR EASE OF TESTING PURPOSE

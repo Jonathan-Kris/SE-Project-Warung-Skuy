@@ -5,14 +5,16 @@ from sqlalchemy.sql import func
 from flask_login import UserMixin
 from flask import session
 
+
 @login_manager.user_loader
 def load_user(user_id):
-    if session['account_type'] == 'Lender':
-        return Lender.query.get(int(user_id))
-    elif session['account_type'] == 'Borrower':
-        return Borrower.query.get(int(user_id))
+    lender = Lender.query.get(int(user_id))
+    borrower = Borrower.query.get(int(user_id))
+
+    if(lender):
+        return lender
     else:
-        return None
+        return borrower
 
 
 class User(db.Model):
@@ -27,7 +29,8 @@ class User(db.Model):
     birth_date = db.Column(db.Date(), nullable=False)
     gender = db.Column(db.String(length=1), nullable=False)
 
-    created_at = db.Column(db.DateTime(timezone=True), server_default=func.now())
+    created_at = db.Column(db.DateTime(timezone=True),
+                           server_default=func.now())
 
     @property
     def password(self):
@@ -57,15 +60,16 @@ class Borrower(User, UserMixin):
     # Relation to Loan
     loan = db.relationship('Loan', backref='loan_requested', lazy=True)
 
+
 class Loan(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     title = db.Column(db.String(length=75))
-    tenor = db.Column(db.Numeric(10,2))
+    tenor = db.Column(db.Numeric(10, 2))
     start_loan = db.Column(db.Date())
     end_loan = db.Column(db.Date())
 
     nominal = db.Column(db.Integer())
-    interest = db.Column(db.Numeric(10,2))
+    interest = db.Column(db.Numeric(10, 2))
 
     loan_reason = db.Column(db.String(length=500))
     business_desc = db.Column(db.String(length=500))
@@ -81,5 +85,3 @@ class Loan(db.Model):
 
     def __repr__(self):
         return f"<Loan {self.judul}>"
-
-
