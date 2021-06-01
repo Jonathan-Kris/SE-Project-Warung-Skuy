@@ -58,7 +58,7 @@ header h1 {
   font-weight: bold;
 }
 
-.btn {
+.register .btn#submit, .btn#submit{
   background: #f4d160;
   border-radius: 25px;
   color: #28527a;
