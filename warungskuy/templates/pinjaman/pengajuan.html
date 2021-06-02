@@ -5,7 +5,7 @@
 {% endblock %}
 
 {% block title %}
-Pengajuan Peminjaman 1 (Logged)
+Pengajuan Peminjaman
 {% endblock %}
 
 {% block content %}
@@ -141,8 +141,8 @@ Pengajuan Peminjaman 1 (Logged)
       </div>
       <div class="row">
         <div class="col-lg-12 form-field text-center">
-          <input type="checkbox" class="in" id="aggrement">
-          <label for="aggrement" class="aggrement-label"> Setuju dengan syarat dan ketentuan yang berlaku </label>
+          {{ form.toc(class="in", id="aggrement") }}
+          {{ form.toc.label(class="aggrement-label") }}
         </div>
       </div>
       <div class="col-lg-12 text-center">

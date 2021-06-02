@@ -129,7 +129,13 @@
               {{ lenderForm.bank.label() }}
               {{ lenderForm.bank(class="form-control", placeholder="Bank") }}
               {% if lenderForm.bank.errors %}
-              <div class="error-msg"> {% for error in lenderForm.bank.errors %} {{ error }} {% endfor %} </div>
+              <div class="error-msg"> 
+                {% for error in lenderForm.bank.errors %} 
+                  {{ error }} 
+                {% endfor %} 
+
+                {{ errBank }}
+              </div>
               {% endif %}
             </div>
             <div class="form-group">
@@ -152,8 +158,8 @@
         </div>
 
         <div class="text-center mt-2">
-          <input type="checkbox" name="" id="agree" />
-          <label for="agree">Setujui untuk bergabung</label>
+          {{ lenderForm.toc(class="in", id="aggre") }}
+          {{ lenderForm.toc.label(class="aggrement-label") }}
         </div>
         
         <div class="text-center">
@@ -251,8 +257,8 @@
           </div>
         </div>
         <div class="text-center mt-2">
-          <input type="checkbox" name="" id="agree" />
-          <label for="agree">Setuju untuk bergabung</label>
+          {{ lenderForm.toc(class="in", id="aggre") }}
+          {{ lenderForm.toc.label(class="aggrement-label") }}
         </div>
         <div class="text-center">
           {{ borrowerForm.submit(class="btn") }}

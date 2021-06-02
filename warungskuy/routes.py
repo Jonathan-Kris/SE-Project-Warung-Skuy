@@ -22,6 +22,10 @@ def register_page():
     borrowerForm = RegisterBorrowerForm()
 
     if lenderForm.validate_on_submit():
+        if lenderForm.bank.data == 'XXXXXX':
+            err_Bank = "Please select a bank"
+            return redirect(url_for('login_page'), errBank = err_Bank)
+
         user_to_create = Lender(username=lenderForm.username.data,
                             email=lenderForm.email.data,
                             #password=lenderForm.password1.data, #DISABLE FOR TESTING PURPOSE ONLY

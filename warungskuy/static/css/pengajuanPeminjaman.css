@@ -58,6 +58,10 @@ body {
     height: 3rem;
 }
 
+.error-msg{
+    color:red
+}
+
 @media all and (max-width: 575.98px) {
     .form-pengajuan-peminjaman {
         padding: 3rem 2rem;
