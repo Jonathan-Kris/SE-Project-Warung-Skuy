@@ -9,8 +9,9 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css"
         integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
     <!-- Custom CSS -->
-    <link rel="stylesheet" href="../static/css/common/header.css">
-    <link rel="stylesheet" href="../static/css/common/footer.css">
+    {% set base_path_css = "../../static" %}
+    <link rel="stylesheet" href="{{ base_path_css }}/css/common/header.css">
+    <link rel="stylesheet" href="{{ base_path_css }}/css/common/footer.css">
     {% block css %} {% endblock %}
     <title>
         {% block title %} {% endblock %}
@@ -22,7 +23,7 @@
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
         <div class="container-fluid">
             <a class="navbar-brand" href="{{ url_for('home_page') }}">
-                <img src="../static/assets/images/common/logo.png" alt="" class="d-inline-block align-text-top">
+                <img src="{{ base_path_css }}/assets/images/common/logo.png" alt="" class="d-inline-block align-text-top">
                 Warung Skuy
             </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
@@ -75,6 +76,22 @@
         </div>
     </nav>
 
+    <!-- Flashed Messages -->
+    {#
+    <!-- {% with messages = get_flashed_messages(with_categories=true) %}
+    {% if messages %}
+    {% for category, message in messages %}
+    <div class="alert alert-{{ category }}">
+        <button type="button" class="m1-2 mb-1 close" data-dismiss="alert" , aria-label="close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+        {{ message }}
+    </div>
+    {% endfor %}
+    {% endif %}
+    {% endwith %} 
+    -->#}
+
     <!-- Content here -->
     {% block content %} {% endblock %}
 
@@ -88,7 +105,7 @@
                         <li class="list-inline-item">
                             <a href="https://www.twitter.com">
                                 <i class="fa fa-twitter">
-                                    <img src="../static/assets/images/common/round_twitter.png" alt="">
+                                    <img src="{{ base_path_css }}/assets/images/common/round_twitter.png" alt="">
                                     <div class="fa-text">
                                         Twitter
                                     </div>
@@ -98,7 +115,7 @@
                         <li class="list-inline-item">
                             <a href="https://www.linkedin.com">
                                 <i class="fa fa-linkedin">
-                                    <img src="../static/assets/images/common/round_linkedIn.png" alt="">
+                                    <img src="{{ base_path_css }}/assets/images/common/round_linkedIn.png" alt="">
                                     <div class="fa-text">
                                         Linkedin
                                     </div>
@@ -108,7 +125,7 @@
                         <li class="list-inline-item">
                             <a href="https://www.instagram.com">
                                 <i class="fa fa-instagram">
-                                    <img src="../static/assets/images/common/round_instagram.png" alt="">
+                                    <img src="{{ base_path_css }}/assets/images/common/round_instagram.png" alt="">
                                     <div class="fa-text">
                                         Instagram
                                     </div>
@@ -118,7 +135,7 @@
                         <li class="list-inline-item">
                             <a href="https://www.youtube.com">
                                 <i class="fa fa-youtube">
-                                    <img src="../static/assets/images/common/round_youtube.png" alt="">
+                                    <img src="{{ base_path_css }}/assets/images/common/round_youtube.png" alt="">
                                     <div class="fa-text">
                                         Youtube
                                     </div>
@@ -128,7 +145,7 @@
                         <li class="list-inline-item">
                             <a href="https://www.facebook.com">
                                 <i class="fa fa-facebook">
-                                    <img src="../static/assets/images/common/round_facebook.png" alt="">
+                                    <img src="{{ base_path_css }}/assets/images/common/round_facebook.png" alt="">
                                     <div class="fa-text">
                                         Facebook
                                     </div>
@@ -145,8 +162,15 @@
         </div>
     </footer>
 
+    <!-- JS for Flashed Message -->
+    <!-- <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+        integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"
+        integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV"
+        crossorigin="anonymous"></script> -->
+    <!-- Standard Bootstrap & JS -->
+    <script src="../assets/libraries/jquery/jquery.min.js"></script>
+    <script src="../assets/libraries/bootstrap/bootstrap.min.js"></script>
 </body>
-<script src="../assets/libraries/jquery/jquery.min.js"></script>
-<script src="../assets/libraries/bootstrap/bootstrap.min.js"></script>
-
 </html>
