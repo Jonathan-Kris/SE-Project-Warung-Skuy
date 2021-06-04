@@ -1,9 +1,9 @@
 from warungskuy import app
 from flask import render_template, redirect, url_for, flash, request, session
 # Import Item Model
-from warungskuy.models import User, Lender, Borrower, Loan
+from warungskuy.models import Borrower, Lender, LendingTransaction, Loan, User
 # Import Forms
-from warungskuy.forms import LoanForm, LoginForm, RegisterBorrowerForm, RegisterLenderForm
+from warungskuy.forms import LendingForm, LoanForm, LoginForm, RegisterBorrowerForm, RegisterLenderForm
 # Import Database
 from warungskuy import db
 # Import login manager
@@ -120,11 +120,71 @@ def logout_page():
 
 @app.route('/pendanaan')
 def pendanaan_page():
-    return render_template('pendanaan.html')
+    items_pendanaan = Loan.query.all()
+    items_ongoing =  Loan.query\
+        .join(LendingTransaction, Loan.id == LendingTransaction.loan_id)\
+        .filter(LendingTransaction.lender_id == current_user.id)
+        # .filter(Loan.borrower == LendingTransaction.lender_id)\
+
+    # Could pose performance issue as data gets larger, but will do later. Can be solved by adding counter field in the db
+    # https://stackoverflow.com/questions/16000287/how-to-get-length-of-or-count-of-datastore-entities-through-a-reference-collec
+    count_items_pendanaan = Loan.query.count()
+    count_items_ongoing = Loan.query\
+        .join(LendingTransaction, Loan.id == LendingTransaction.loan_id)\
+        .filter(LendingTransaction.lender_id == current_user.id)\
+        .count()
+
+    return render_template('pendanaan/main.html', itemsPendanaan = items_pendanaan, itemsOngoing = items_ongoing,\
+        countItemsPendanaan = count_items_pendanaan, countItemsOngoing = count_items_ongoing)
+
+@app.route('/pendanaan/detail/<loan_id>')
+def pendanaan_detail_page(loan_id):
+    loan_detail = Loan.query.filter_by(id=loan_id).first()
+
+    return render_template('pendanaan/detail.html', loanDetail = loan_detail)
+
+@app.route('/pendanaan/form-pemberian/<loan_id>', methods=['POST', 'GET'])
+def pendanaan_form_pemberian_page(loan_id):
+    loan_detail = Loan.query.filter_by(id=loan_id).first()
+
+    print(loan_detail)
+
+    form = LendingForm()
+    
+    if form.validate_on_submit():
+        print(form.lending_amount.data)
+
+        lendingTr = LendingTransaction(
+            lender_id=current_user.id,
+            loan_id=loan_id,
+            lending_amount=form.lending_amount.data
+        )
+
+        print(lendingTr)
+
+        db.session.add(lendingTr)
+        db.session.commit()
+
+        return redirect(url_for('pendanaan_detail_page', loan_id = loan_id))
+
+    return render_template('pendanaan/form-pemberian.html', form=form, loanDetail = loan_detail)
 
 @app.route('/pinjaman')
 def pinjaman_main_page():
-    return render_template('pinjaman/main.html')
+    items_pinjaman_user = Loan.query\
+        .join(LendingTransaction, Loan.id == LendingTransaction.loan_id)\
+        .filter(Loan.borrower == current_user.id)
+        # .filter(Loan.borrower == LendingTransaction.lender_id)\
+
+    # Could pose performance issue as data gets larger, but will do later. Can be solved by adding counter field in the db
+    # https://stackoverflow.com/questions/16000287/how-to-get-length-of-or-count-of-datastore-entities-through-a-reference-collec
+    count_items_pinjaman_user = Loan.query\
+        .join(LendingTransaction, Loan.id == LendingTransaction.loan_id)\
+        .filter(Loan.borrower == current_user.id)\
+        .count()
+
+    return render_template('pinjaman/main.html', itemsPinjamanUser = items_pinjaman_user,\
+        countItemsPinjamanUser = count_items_pinjaman_user,)
 
 @app.route('/pinjaman/pengajuan', methods=['POST', 'GET'])
 def pinjaman_pengajuan_page():

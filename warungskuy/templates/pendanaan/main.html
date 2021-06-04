@@ -1,0 +1,79 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Landing Page
+{% endblock %}
+
+{% block content %}
+<div class="position-relative overflow-hidden p-3 p-md-5 m-md-3 text-center">
+    <!-- Pendanaan Yang Tersedia -->
+    <div class="container">
+        <h3 class="display-4 font-weight-normal">Pendanaan Yang Tersedia</h3>
+        
+        <div class="container">
+            <div class="row">
+                {% if countItemsPendanaan > 0 %}
+                {% for item in itemsPendanaan %}
+                <div class="col d-flex justify-content-center">
+                    <a href="{{ url_for('pendanaan_detail_page', loan_id= item.id) }}">
+                        <div class="card" style="width: 18rem;">
+                            <img class="card-img-top" src="..." alt="Card image cap">
+                            <div class="card-body">
+                                <h5 class="card-title">{{ item.title }}</h5>
+                                <p class="card-text">{{ item.nominal }}</p>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+                {% endfor %}
+                {% else %}
+                <div class="col d-flex justify-content-center">
+                    Tidak ada pinjaman yang tersedia
+                </div>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+
+    <!-- Pendanaan Yang Berlangsung -->
+    <div class="container">
+        <h3 class="display-4 font-weight-normal">Pendanaan Yang Berlangsung</h3>
+
+        <div class="container">
+            <div class="row">
+                {% if countItemsOngoing > 0 %}
+                    {% for item in itemsOngoing %}
+                    <div class="col d-flex justify-content-center">
+                        <a href="{{ url_for('pendanaan_detail_page', loan_id= item.id) }}">
+                            <div class="card" style="width: 18rem;">
+                                <img class="card-img-top" src="..." alt="Card image cap">
+                                <div class="card-body">
+                                    <h5 class="card-title">{{ item.title }}</h5>
+                                    <p class="card-text">{{ item.nominal }}</p>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                    {% endfor %}
+                {% else %}
+                <div class="col d-flex justify-content-center">
+                    Tidak ada pinjaman yang tersedia
+                </div>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+
+    <!-- Pendanaan Yang Telah Berhasil -->
+    <div class="container">
+        <h3 class="display-4 font-weight-normal">Pendanaan Yang Telah Berhasil</h3>
+
+        <div class="container">
+            Feature is under Development
+        </div>
+    </div>
+
+    <div class="product-device box-shadow d-none d-md-block"></div>
+    <div class="product-device product-device-2 box-shadow d-none d-md-block"></div>
+</div>
+{% endblock %}

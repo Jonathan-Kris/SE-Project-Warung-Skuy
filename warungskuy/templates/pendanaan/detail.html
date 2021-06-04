@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Detail Pendanaan
+{% endblock %}
+
+{% block content %}
+<div class="position-relative overflow-hidden p-3 p-md-5 m-md-3 text-center">
+    <h1 class="display-4 font-weight-normal">Detail Pendanaan</h1>
+
+    <div>
+        {{ loanDetail }}
+    </div>   
+
+    <a href="{{ url_for('pendanaan_form_pemberian_page', loan_id = loanDetail.id ) }}"> 
+        <button class="btn btn-primary"> Beri Pinjaman  </button> 
+    <a>
+
+    <div class="product-device box-shadow d-none d-md-block"></div>
+    <div class="product-device product-device-2 box-shadow d-none d-md-block"></div>
+</div>
+{% endblock %}

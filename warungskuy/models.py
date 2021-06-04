@@ -31,8 +31,7 @@ class User(db.Model):
     birth_date = db.Column(db.Date(), nullable=False)
     gender = db.Column(db.String(length=1), nullable=False)
 
-    created_at = db.Column(db.DateTime(timezone=True),
-                           server_default=func.now())
+    created_at = db.Column(db.DateTime(timezone=True), server_default=func.now())
 
     @property
     def password(self):
@@ -48,12 +47,16 @@ class User(db.Model):
 
 
 class Lender(User, UserMixin):
-    id = db.Column(db.String(length=32), primary_key=True, default=str(uuid.uuid4()))
+    id = db.Column(db.String(length=32), primary_key=True,
+                   default=str(uuid.uuid4()))
     nik = db.Column(db.String(length=16), unique=True)
     address = db.Column(db.String(length=255))
     bank = db.Column(db.String(length=5))
     account_number = db.Column(db.String(length=50))
     account_name = db.Column(db.String(length=100))
+
+    # Relationship
+    lendingTr = db.relationship('LendingTransaction', backref='lender', lazy=True)
 
 
 class Borrower(User, UserMixin):
@@ -64,26 +67,41 @@ class Borrower(User, UserMixin):
 
 
 class Loan(db.Model):
-    id = db.Column(db.Integer, primary_key=True)
+    # id = db.Column(db.Integer, primary_key=True)
+    id = db.Column(db.String(length=32), primary_key=True, default=str(uuid.uuid4()))
     title = db.Column(db.String(length=75))
-    tenor = db.Column(db.Integer())
-    start_loan = db.Column(db.Date())
-    end_loan = db.Column(db.Date())
+    tenor = db.Column(db.Integer)
+    start_loan = db.Column(db.Date)
+    end_loan = db.Column(db.Date)
 
-    nominal = db.Column(db.Integer())
+    nominal = db.Column(db.Integer)
     interest = db.Column(db.Numeric(10, 2))
 
     loan_reason = db.Column(db.String(length=500))
     business_desc = db.Column(db.String(length=500))
     location = db.Column(db.String(length=100))
-    start_year = db.Column(db.String(length=5))
+    start_year = db.Column(db.Integer)
     business_address = db.Column(db.String(length=150))
     gross_income = db.Column(db.Integer)
     net_income = db.Column(db.Integer)
     modal = db.Column(db.Integer)
+    # Fund Collected
+    # fund_collected = db.Column(db.Integer) # Aggregate value, cek apakah SQLAlchemy ada function aggregate
+    # Timestamp
+    created_at = db.Column(db.DateTime(timezone=True), server_default=func.now())
 
-    # Relationship to Borrower
+    # Foreign Key
     borrower = db.Column(db.String(length=32), db.ForeignKey('borrower.id'))
 
+    # Relationship
+    lendingTr = db.relationship('LendingTransaction', backref='lended_loan', lazy=True)
+
     def __repr__(self):
-        return f"<Loan {self.judul}>"
+        return f"<Loan {self.title}>"
+
+
+class LendingTransaction(db.Model):
+    trans_id = db.Column(db.String(length=32), primary_key=True, default=str(uuid.uuid4()))
+    lender_id = db.Column(db.String(length=32), db.ForeignKey('lender.id'), nullable=False)
+    loan_id = db.Column(db.String(length=32), db.ForeignKey('loan.id'), nullable=False)
+    lending_amount = db.Column(db.Integer(), nullable=False)

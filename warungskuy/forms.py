@@ -127,3 +127,7 @@ class LoanForm(FlaskForm):
 
     toc = BooleanField(label="Setuju dengan syarat dan ketentuan yang berlaku", validators=[InputRequired()])
     submit = SubmitField(label="Proses Peminjaman")
+
+class LendingForm(FlaskForm):
+    lending_amount = IntegerField(label="Nominal Pinjaman", validators=[])
+    submit = SubmitField(label="Proses")
