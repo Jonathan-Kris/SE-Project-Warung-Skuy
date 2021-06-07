@@ -120,22 +120,25 @@ def logout_page():
 
 @app.route('/pendanaan')
 def pendanaan_page():
-    items_pendanaan = Loan.query.all()
-    items_ongoing =  Loan.query\
-        .join(LendingTransaction, Loan.id == LendingTransaction.loan_id)\
-        .filter(LendingTransaction.lender_id == current_user.id)
-        # .filter(Loan.borrower == LendingTransaction.lender_id)\
+    if current_user.is_authenticated:
+        items_pendanaan = Loan.query.all()
+        items_ongoing =  Loan.query\
+            .join(LendingTransaction, Loan.id == LendingTransaction.loan_id)\
+            .filter(LendingTransaction.lender_id == current_user.id)
+            # .filter(Loan.borrower == LendingTransaction.lender_id)\
 
-    # Could pose performance issue as data gets larger, but will do later. Can be solved by adding counter field in the db
-    # https://stackoverflow.com/questions/16000287/how-to-get-length-of-or-count-of-datastore-entities-through-a-reference-collec
-    count_items_pendanaan = Loan.query.count()
-    count_items_ongoing = Loan.query\
-        .join(LendingTransaction, Loan.id == LendingTransaction.loan_id)\
-        .filter(LendingTransaction.lender_id == current_user.id)\
-        .count()
+        # Could pose performance issue as data gets larger, but will do later. Can be solved by adding counter field in the db
+        # https://stackoverflow.com/questions/16000287/how-to-get-length-of-or-count-of-datastore-entities-through-a-reference-collec
+        count_items_pendanaan = Loan.query.count()
+        count_items_ongoing = Loan.query\
+            .join(LendingTransaction, Loan.id == LendingTransaction.loan_id)\
+            .filter(LendingTransaction.lender_id == current_user.id)\
+            .count()
 
-    return render_template('pendanaan/main.html', itemsPendanaan = items_pendanaan, itemsOngoing = items_ongoing,\
-        countItemsPendanaan = count_items_pendanaan, countItemsOngoing = count_items_ongoing)
+        return render_template('pendanaan/main.html', itemsPendanaan = items_pendanaan, itemsOngoing = items_ongoing,\
+            countItemsPendanaan = count_items_pendanaan, countItemsOngoing = count_items_ongoing)
+    else:
+        return render_template('pendanaan/main.html')
 
 @app.route('/pendanaan/detail/<loan_id>')
 def pendanaan_detail_page(loan_id):
@@ -171,20 +174,25 @@ def pendanaan_form_pemberian_page(loan_id):
 
 @app.route('/pinjaman')
 def pinjaman_main_page():
-    items_pinjaman_user = Loan.query\
-        .join(LendingTransaction, Loan.id == LendingTransaction.loan_id)\
-        .filter(Loan.borrower == current_user.id)
-        # .filter(Loan.borrower == LendingTransaction.lender_id)\
+    if current_user.is_authenticated:
+        items_pinjaman_user = Loan.query\
+            .join(LendingTransaction, Loan.id == LendingTransaction.loan_id)\
+            .filter(Loan.borrower == current_user.id)
+            # .filter(Loan.borrower == LendingTransaction.lender_id)\
 
-    # Could pose performance issue as data gets larger, but will do later. Can be solved by adding counter field in the db
-    # https://stackoverflow.com/questions/16000287/how-to-get-length-of-or-count-of-datastore-entities-through-a-reference-collec
-    count_items_pinjaman_user = Loan.query\
-        .join(LendingTransaction, Loan.id == LendingTransaction.loan_id)\
-        .filter(Loan.borrower == current_user.id)\
-        .count()
+        # Could pose performance issue as data gets larger, but will do later. Can be solved by adding counter field in the db
+        # https://stackoverflow.com/questions/16000287/how-to-get-length-of-or-count-of-datastore-entities-through-a-reference-collec
+        count_items_pinjaman_user = Loan.query\
+            .join(LendingTransaction, Loan.id == LendingTransaction.loan_id)\
+            .filter(Loan.borrower == current_user.id)\
+            .count()
+        
+        return render_template('pinjaman/main.html', itemsPinjamanUser = items_pinjaman_user,\
+            countItemsPinjamanUser = count_items_pinjaman_user)
+    else:
+        return render_template('pinjaman/main.html')
 
-    return render_template('pinjaman/main.html', itemsPinjamanUser = items_pinjaman_user,\
-        countItemsPinjamanUser = count_items_pinjaman_user,)
+
 
 @app.route('/pinjaman/pengajuan', methods=['POST', 'GET'])
 def pinjaman_pengajuan_page():

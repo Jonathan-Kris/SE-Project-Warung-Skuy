@@ -1,0 +1,40 @@
+html,
+body {
+  margin: 0;
+  padding: 0;
+  font-family: Roboto;
+  background-color: #f1f1f1;
+}
+
+.banner {
+    background-color: #F4D160;
+}
+
+.banner-title {
+    padding: 7rem 25rem;
+    font-size: 50px;
+}
+
+.chart-1 img {
+    width: 40rem;
+}
+
+.chart-1 {
+    padding-bottom: 15rem;
+}
+
+@media all and (max-width: 575.98px){
+    .banner-title {
+        padding: 3rem 2rem;
+        font-size: 20px;
+    }
+    
+    .chart-1 img {
+        width: 20rem;
+    }
+    
+    .chart-1 {
+        margin-top: -2rem;
+        padding-bottom: 3rem;
+    }
+}
