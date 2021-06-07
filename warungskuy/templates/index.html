@@ -1,17 +1,181 @@
 {% extends 'base.html' %}
 
 {% block title %}
-    Landing Page
+Landing Page
+{% endblock %}
+
+{% block css %}
+<link rel="stylesheet" href="{{ base_path_css }}/css/home.css">
 {% endblock %}
 
 {% block content %}
-    <div class="position-relative overflow-hidden p-3 p-md-5 m-md-3 text-center">
-        <div class="col-md-5 p-lg-5 mx-auto my-5">
-            <h1 class="display-4 font-weight-normal">Warung Skuy</h1>
-            <p class="lead font-weight-normal">Bersama membantu menyukseskan usaha warung Indonesia</p>
-            <a class="btn btn-primary" href="{{ url_for('register_page') }}">Get Started</a>
+<!-- Banner -->
+<div class="banner">
+    <div class="container-fluid text-center">
+        <div class="row">
+            <div class="col-md-6">
+                <h2 class="banner-title"> Bersama Kembangkan Warung di Indonesia </h2>
+                <p class="banner-text"> Dengan gotong royong kita majukan perekonomian Indonesia dengan membantu mereka
+                    untuk maju dan berkembang. </p>
+                {% if current_user.is_authenticated %}
+                <div class="row">
+                    <div class="col-md-4">
+                        <a href="{{ url_for('pendanaan_page') }}">
+                            <button type="button" class="btn btn-primary btn-text btn-primary-1"> Mulai Danai </button>
+                        </a>
+                    </div>
+                    <div class="col-md-6">
+                        <a href="{{ url_for('pinjaman_main_page') }}">
+                            <button type="button" class="btn btn-primary btn-text btn-primary-1"> Mulai Meminjam </button>
+                        </a>
+                    </div>
+                </div>
+                {% else %}
+                <a href="{{ url_for('register_page') }}">
+                    <button type="button" class="btn btn-primary btn-text btn-primary-1"> Mulai Mendaftar </button>
+                </a>
+                {% endif %}
+            </div>
+            <div class="col-md-6 chart-1">
+                <img src="{{ base_path_css }}/assets/images/common/Chart_1.png" alt="" class="img-fluid">
+            </div>
         </div>
-        <div class="product-device box-shadow d-none d-md-block"></div>
-        <div class="product-device product-device-2 box-shadow d-none d-md-block"></div>
     </div>
+</div>
+<!-- Founder -->
+<div class="founder">
+    <div class="container-fluid text-center">
+        <div class="row">
+            <div class="col-md-12">
+                <h2 class="container-title">
+                    Pendiri Kami
+                </h2>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-4">
+                <div class="container-founder">
+                    <div class="founder-image">
+                        <img src="{{ base_path_css }}/assets/images/pages/home/Raymond.png" alt="" class="img-fluid">
+                    </div>
+                    <div class="founder-name">
+                        Raymond Tiandinatan
+                    </div>
+                    <div class="founder-position">
+                        Chief Technology Officer (CTO)
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="container-founder">
+                    <div class="founder-image">
+                        <img src="{{ base_path_css }}/assets/images/pages/home/Jonathan.png" alt="" class="img-fluid">
+                    </div>
+                    <div class="founder-name">
+                        Jonathan Kristanto
+                    </div>
+                    <div class="founder-position">
+                        Chief Executive Officer (CEO)
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="container-founder">
+                    <div class="founder-image">
+                        <img src="{{ base_path_css }}/assets/images/pages/home/Ariel.png" alt="" class="img-fluid">
+                    </div>
+                    <div class="founder-name">
+                        Ariel Waraney Manueke
+                    </div>
+                    <div class="founder-position">
+                        Chief Technology Officer (CTO)
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Benefit -->
+<div class="benefit">
+    <div class="container-fluid text-center">
+        <div class="row">
+            <div class="col-md-12">
+                <h2 class="container-title">
+                    Keuntungan
+                </h2>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6">
+                <div class="benefit-item">
+                    <img src="{{ base_path_css }}/assets/images/pages/home/Aman_Dan_Terpercaya.png" alt=""
+                        class="img-fluid">
+                </div>
+                <div class="benefit-item">
+                    <img src="{{ base_path_css }}/assets/images/pages/home/Keuntungan_Besar.png" alt=""
+                        class="img-fluid">
+                </div>
+                <div class="benefit-item">
+                    <img src="{{ base_path_css }}/assets/images/pages/home/Kontribusi_Sosial.png" alt=""
+                        class="img-fluid">
+                </div>
+            </div>
+            <div class="col-md-6 tabs-image">
+                <img src="{{ base_path_css }}/assets/images/pages/home/Tabs_1.png" alt="" class="img-fluid">
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Indonesia -->
+<div class="indonesia">
+    <div class="container-fluid text-center">
+        <div class="row">
+            <div class="col-md-12">
+                <h2 class="container-title">
+                    Dari Kamu Untuk Indonesia
+                </h2>
+                <img src="{{ base_path_css }}/assets/images/pages/home/Indonesia_Tosca.png" alt="" class="img-fluid">
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Testimoni -->
+<div class="testimoni">
+    <div class="container-fluid text-center">
+        <div class="row">
+            <div class="col-md-12">
+                <h2 class="container-title testimoni-title">
+                    Testimoni Pelanggan Kami
+                </h2>
+                <h4 class="testimoni-subtitle"> Kepuasan anda adalah prioritas kami </h4>
+            </div>
+        </div>
+        <div class="row testimoni-area">
+            <div class="col-md-4">
+                <div class="container-testimoni">
+                    <div class="testimoni-image">
+                        <img src="{{ base_path_css }}/assets/images/pages/home/Testimoni_one.png" alt=""
+                            class="img-fluid">
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="container-testimoni">
+                    <div class="testimoni-image">
+                        <img src="{{ base_path_css }}/assets/images/pages/home/Testimoni_two.png" alt=""
+                            class="img-fluid">
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="container-testimoni">
+                    <div class="testimoni-image">
+                        <img src="{{ base_path_css }}/assets/images/pages/home/Testimoni_three.png" alt=""
+                            class="img-fluid">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 {% endblock %}
