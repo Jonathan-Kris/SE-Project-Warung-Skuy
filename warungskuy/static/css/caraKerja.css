@@ -1,0 +1,126 @@
+html,
+body {
+  margin: 0;
+  padding: 0;
+  font-family: Roboto;
+  background-color: #F5F5F5;
+}
+
+.page-title {
+    padding: 3rem 0rem;
+    font-size: 50px;
+    font-weight: bold;
+}
+
+.content-title {
+    padding: 2rem 0rem;
+    font-size: 40px;
+}
+
+.box-part {
+    background-color: white;
+    border-radius: 4rem;
+    padding: 2rem 5rem;
+    margin: 1rem 5rem;
+    margin-bottom: 4rem;
+}
+
+.content-text-sm {
+    font-size: 30px;
+    color: #28527A;
+}
+
+.text-area {
+    padding: 1rem 0rem;
+    display: flex;
+    align-items: center;
+}
+
+.number-text {
+    background-color: #F9EEB4;
+    padding: 0.5rem rem;
+    margin: 0rem 0.5rem;
+    border-radius: 100%;
+    font-size: 35px;
+    font-weight: bold;
+    color: #28527A;
+}
+
+.card-container {
+    padding: 0.1rem 1rem;
+    margin-bottom: 1rem;
+    border-radius: 2rem;
+}
+
+.card-container:hover {
+    padding: 0.1rem 1rem;
+    background-image: linear-gradient(0deg, #F5F5F5, white);
+    transform: scale(1.1);
+}
+
+.icon-text {
+    padding: 1rem 0rem;
+}
+
+@media all and (max-width: 575.98px){
+    .page-title {
+        padding: 3rem 0rem;
+        font-size: 50px;
+        font-weight: bold;
+    }
+    
+    .content-title {
+        padding: 1rem 0rem;
+        font-size: 20px;
+    }
+    
+    .box-part {
+        background-color: white;
+        border-radius: 2rem;
+        padding: 1rem 0.5rem;
+        margin: 1rem 0.5rem;
+        margin-bottom: 2rem;
+    }
+    
+    .content-text-sm {
+        font-size: 15px;
+        color: #28527A;
+    }
+    
+    .text-area {
+        padding: 1rem 0rem;
+        display: flex;
+        align-items: center;
+    }
+    
+    .number-text {
+        background-color: #F9EEB4;
+        padding: 0.5rem rem;
+        margin: 0rem 0.5rem;
+        border-radius: 100%;
+        font-size: 20px;
+        font-weight: bold;
+        color: #28527A;
+        width: 2rem;
+        display: flex;
+        justify-content: center;
+    }
+    
+    .card-container {
+        padding: 0.1rem 0.1rem;
+        margin-bottom: 0.2rem;
+        border-radius: 2rem;
+        transform: scale(0.8);
+    }
+    
+    .card-container:hover {
+        padding: 0.1rem 0.1rem;
+        background-image: linear-gradient(0deg, #F5F5F5, white);
+        transform: scale(0.9);
+    }
+    
+    .icon-text {
+        padding: 1rem 0rem;
+        font-size: 30px;
+    }
+}
