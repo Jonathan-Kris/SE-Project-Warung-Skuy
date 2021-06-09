@@ -1,280 +1,363 @@
 <!DOCTYPE html>
 <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link
+      rel="stylesheet"
+      href="../static/assets/libraries/bootstrap/bootstrap.min.css"
+    />
+    <link rel="stylesheet" href="../static/css/auth.css" />
+  </head>
 
-<head>
-  <meta charset="UTF-8" />
-  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Document</title>
-  <link rel="stylesheet" href="../static/assets/libraries/bootstrap/bootstrap.min.css" />
-  <link rel="stylesheet" href="../static/css/auth.css" />
-</head>
+  <body>
+    <header>
+      <div
+        class="container py-3 d-flex align-items-center justify-content-between"
+      >
+        <a href="{{ url_for('home_page') }}">
+          <div class="logo">
+            <img src="../static/assets/images/common/logo.png" alt="" />
+            <span>Warung Skuy</span>
+          </div>
+        </a>
+        <h1>DAFTAR</h1>
+        <label class="switch btn-switch">
+          <input
+            type="checkbox"
+            name="color_mode"
+            id="color_mode"
+            value="1"
+            checked
+            onchange="changeForm()"
+          />
+          <label
+            for="color_mode"
+            data-investor="Lender"
+            data-peminjam="Borrower"
+            class="btn-switch-inner"
+          ></label>
+        </label>
+      </div>
+    </header>
+    <main class="register">
+      <div class="auth container d-flex align-items-center flex-column">
+        <h1 class="card-title py-3">
+          Anda Mendaftar Sebagai <span id="type">Lender</span>
+        </h1>
 
-<body>
-  <header>
-    <div class="container py-3 d-flex align-items-center justify-content-between">
-      <a href="{{ url_for('home_page') }}">
-        <div class="logo">
-          <img src="../static/assets/images/common/logo.png" alt="" />
-          <span>Warung Skuy</span>
-        </div>
-      </a>
-      <h1>DAFTAR</h1>
-      <label class="switch btn-switch">
-        <input type="checkbox" name="color_mode" id="color_mode" value="1" checked onchange="changeForm()" />
-        <label for="color_mode" data-investor="Investor" data-peminjam="Peminjam" class="btn-switch-inner"></label>
-      </label>
-    </div>
-  </header>
-  <main class="register">
-    <div class="auth container d-flex align-items-center flex-column">
-      <h1 class="card-title py-3">
-        Anda Mendaftar Sebagai <span id="type">Investor</span>
-      </h1>
-
-      <!-- Form Investor -->
-      {{ lenderForm.hidden_tag() }}
-      <form method="POST" action="" class="w-100" id="investor-form">
-        {{ lenderForm.csrf_token }}
-        <div class="row">
-          <div class="col-lg-6 col-md-12">
-            <div class="form-group">
-              {{ lenderForm.username.label() }}
-              {{ lenderForm.username(class="form-control", placeholder="User Name") }}
-              {% if lenderForm.username.errors %}
-              <div class="error-msg"> {% for error in lenderForm.username.errors %} {{ error }} {% endfor %} </div>
-              {% endif %}
-            </div>
-            <div class="form-group">
-              {{ lenderForm.fullname.label() }}
-              {{ lenderForm.fullname(class="form-control", placeholder="Nama Lengkap") }}
-              {% if lenderForm.fullname.errors %}
-              <div class="error-msg"> {% for error in lenderForm.fullname.errors %} {{ error }} {% endfor %} </div>
-              {% endif %}
-            </div>
-            <div class="form-group">
-              {{ lenderForm.email.label() }}
-              {{ lenderForm.email(class="form-control", placeholder="Email") }}
-              {% if lenderForm.email.errors %}
-              <div class="error-msg"> {% for error in lenderForm.email.errors %} {{ error }} {% endfor %} </div>
-              {% endif %}
-            </div>
-            <div class="form-group">
-              {{ lenderForm.phone_number.label() }}
-              {{ lenderForm.phone_number(class="form-control", placeholder="Kontak Telepon") }}
-              {% if lenderForm.phone_number.errors %}
-              <div class="error-msg"> {% for error in lenderForm.phone_number.errors %} {{ error }} {% endfor %}
+        <!-- Form Investor -->
+        {{ lenderForm.hidden_tag() }}
+        <form method="POST" action="" class="w-100" id="investor-form">
+          {{ lenderForm.csrf_token }}
+          <div class="row">
+            <div class="col-lg-6 col-md-12">
+              <div class="form-group">
+                {{ lenderForm.username.label() }} {{
+                lenderForm.username(class="form-control", placeholder="User
+                Name") }} {% if lenderForm.username.errors %}
+                <div class="error-msg">
+                  {% for error in lenderForm.username.errors %} {{ error }} {%
+                  endfor %}
+                </div>
+                {% endif %}
               </div>
-              {% endif %}
+              <div class="form-group">
+                {{ lenderForm.fullname.label() }} {{
+                lenderForm.fullname(class="form-control", placeholder="Nama
+                Lengkap") }} {% if lenderForm.fullname.errors %}
+                <div class="error-msg">
+                  {% for error in lenderForm.fullname.errors %} {{ error }} {%
+                  endfor %}
+                </div>
+                {% endif %}
+              </div>
+              <div class="form-group">
+                {{ lenderForm.email.label() }} {{
+                lenderForm.email(class="form-control", placeholder="Email") }}
+                {% if lenderForm.email.errors %}
+                <div class="error-msg">
+                  {% for error in lenderForm.email.errors %} {{ error }} {%
+                  endfor %}
+                </div>
+                {% endif %}
+              </div>
+              <div class="form-group">
+                {{ lenderForm.phone_number.label() }} {{
+                lenderForm.phone_number(class="form-control",
+                placeholder="Kontak Telepon") }} {% if
+                lenderForm.phone_number.errors %}
+                <div class="error-msg">
+                  {% for error in lenderForm.phone_number.errors %} {{ error }}
+                  {% endfor %}
+                </div>
+                {% endif %}
+              </div>
+              <div class="form-group">
+                {{ lenderForm.nik.label() }} {{
+                lenderForm.nik(class="form-control", placeholder="Nomor Induk
+                Kependudukan") }} {% if lenderForm.nik.errors %}
+                <div class="error-msg">
+                  {% for error in lenderForm.nik.errors %} {{ error }} {% endfor
+                  %}
+                </div>
+                {% endif %}
+              </div>
+              <div class="form-group">
+                {{ lenderForm.password1.label() }} {{
+                lenderForm.password1(class="form-control",
+                placeholder="Password") }} {% if lenderForm.password1.errors %}
+                <div class="error-msg">
+                  {% for error in lenderForm.password1.errors %} {{ error }} {%
+                  endfor %}
+                </div>
+                {% endif %}
+              </div>
+              <div class="form-group">
+                {{ lenderForm.password2.label() }} {{
+                lenderForm.password2(class="form-control",
+                placeholder="Konfirmasi Password") }} {% if
+                lenderForm.password2.errors %}
+                <div class="error-msg">
+                  {% for error in lenderForm.password2.errors %} {{ error }} {%
+                  endfor %}
+                </div>
+                {% endif %}
+              </div>
             </div>
-            <div class="form-group">
-              {{ lenderForm.nik.label() }}
-              {{ lenderForm.nik(class="form-control", placeholder="Nomor Induk Kependudukan") }}
-              {% if lenderForm.nik.errors %}
-              <div class="error-msg"> {% for error in lenderForm.nik.errors %} {{ error }} {% endfor %} </div>
-              {% endif %}
-            </div>
-            <div class="form-group">
-              {{ lenderForm.password1.label() }}
-              {{ lenderForm.password1(class="form-control", placeholder="Password") }}
-              {% if lenderForm.password1.errors %}
-              <div class="error-msg"> {% for error in lenderForm.password1.errors %} {{ error }} {% endfor %} </div>
-              {% endif %}
-            </div>
-            <div class="form-group">
-              {{ lenderForm.password2.label() }}
-              {{ lenderForm.password2(class="form-control", placeholder="Konfirmasi Password") }}
-              {% if lenderForm.password2.errors %}
-              <div class="error-msg"> {% for error in lenderForm.password2.errors %} {{ error }} {% endfor %} </div>
-              {% endif %}
+            <div class="col-lg-6 col-md-12">
+              <div class="form-group">
+                {{ lenderForm.address.label() }} {{
+                lenderForm.address(class="form-control", placeholder="Alamat
+                Lengkap") }} {% if lenderForm.address.errors %}
+                <div class="error-msg">
+                  {% for error in lenderForm.address.errors %} {{ error }} {%
+                  endfor %}
+                </div>
+                {% endif %}
+              </div>
+              <div class="form-group">
+                {{ lenderForm.birth_place.label() }} {{
+                lenderForm.birth_place(class="form-control", placeholder="Tempat
+                Lahir") }} {% if lenderForm.birth_place.errors %}
+                <div class="error-msg">
+                  {% for error in lenderForm.birth_place.errors %} {{ error }}
+                  {% endfor %}
+                </div>
+                {% endif %}
+              </div>
+              <div class="form-group">
+                {{ lenderForm.birth_date.label() }} <br />
+                {{ lenderForm.birth_date(class='datepicker') }} <br />
+                {% if lenderForm.birth_date.errors %}
+                <div class="error-msg">
+                  {% for error in lenderForm.birth_date.errors %} {{ error }} {%
+                  endfor %}
+                </div>
+                {% endif %}
+              </div>
+              <div class="form-group">
+                {{ lenderForm.gender.label() }}
+                <br />
+                {% for subfield in lenderForm.gender %}
+                <tr>
+                  <td>{{ subfield }}</td>
+                  <td>{{ subfield.label }}</td>
+                </tr>
+                {% endfor %}
+                <br />
+                {% if lenderForm.gender.errors %}
+                <div class="error-msg">
+                  {% for error in lenderForm.gender.errors %} {{ error }} {%
+                  endfor %}
+                </div>
+                {% endif %}
+              </div>
+              <div class="form-group">
+                {{ lenderForm.bank.label() }} {{
+                lenderForm.bank(class="form-control", placeholder="Bank") }} {%
+                if lenderForm.bank.errors %}
+                <div class="error-msg">
+                  {% for error in lenderForm.bank.errors %} {{ error }} {%
+                  endfor %} {{ errBank }}
+                </div>
+                {% endif %}
+              </div>
+              <div class="form-group">
+                {{ lenderForm.account_number.label() }} {{
+                lenderForm.account_number(class="form-control",
+                placeholder="Nomor Rekening") }} {% if
+                lenderForm.account_number.errors %}
+                <div class="error-msg">
+                  {% for error in lenderForm.account_number.errors %} {{ error
+                  }} {% endfor %}
+                </div>
+                {% endif %}
+              </div>
+              <div class="form-group">
+                {{ lenderForm.account_name.label() }} {{
+                lenderForm.account_name(class="form-control", placeholder="Nama
+                Pemilik Rekening") }} {% if lenderForm.account_name.errors %}
+                <div class="error-msg">
+                  {% for error in lenderForm.account_name.errors %} {{ error }}
+                  {% endfor %}
+                </div>
+                {% endif %}
+              </div>
             </div>
           </div>
-          <div class="col-lg-6 col-md-12">
-            <div class="form-group">
-              {{ lenderForm.address.label() }}
-              {{ lenderForm.address(class="form-control", placeholder="Alamat Lengkap") }}
-              {% if lenderForm.address.errors %}
-              <div class="error-msg"> {% for error in lenderForm.address.errors %} {{ error }} {% endfor %} </div>
-              {% endif %}
-            </div>
-            <div class="form-group">
-              {{ lenderForm.birth_place.label() }}
-              {{ lenderForm.birth_place(class="form-control", placeholder="Tempat Lahir") }}
-              {% if lenderForm.birth_place.errors %}
-              <div class="error-msg"> {% for error in lenderForm.birth_place.errors %} {{ error }} {% endfor %} </div>
-              {% endif %}
-            </div>
-            <div class="form-group">
-              {{ lenderForm.birth_date.label() }} <br />
-              {{ lenderForm.birth_date(class='datepicker') }} <br />
-              {% if lenderForm.birth_date.errors %}
-              <div class="error-msg"> {% for error in lenderForm.birth_date.errors %} {{ error }} {% endfor %} </div>
-              {% endif %}
-            </div>
-            <div class="form-group">
-              {{ lenderForm.gender.label() }}
-              <br />
-              {% for subfield in lenderForm.gender %}
-              <tr>
-                <td>{{ subfield }}</td>
-                <td>{{ subfield.label }}</td>
-              </tr>
-              {% endfor %}
-              <br />
-              {% if lenderForm.gender.errors %}
-              <div class="error-msg"> {% for error in lenderForm.gender.errors %} {{ error }} {% endfor %} </div>
-              {% endif %}
-            </div>
-            <div class="form-group">
-              {{ lenderForm.bank.label() }}
-              {{ lenderForm.bank(class="form-control", placeholder="Bank") }}
-              {% if lenderForm.bank.errors %}
-              <div class="error-msg"> 
-                {% for error in lenderForm.bank.errors %} 
-                  {{ error }} 
-                {% endfor %} 
 
-                {{ errBank }}
+          <div class="text-center mt-2">
+            {{ lenderForm.toc(class="in", id="aggre") }} {{
+            lenderForm.toc.label(class="aggrement-label") }}
+          </div>
+
+          <div class="text-center">
+            {{ lenderForm.submit(class="btn mb-5") }}
+            <!-- <button class="btn mb-5" type="submit">Daftar</button> -->
+          </div>
+          <br />
+
+          <div class="text-center mt-2">
+            <p>
+              Sudah memiliki akun?
+              <a class="" href="{{ url_for('login_page') }}">Masuk</a>
+            </p>
+          </div>
+        </form>
+
+        <!-- Form Peminjam -->
+        {{ borrowerForm.hidden_tag() }}
+        <form method="POST" action="" class="w-100" id="peminjam-form">
+          {{ borrowerForm.csrf_token }}
+          <div class="row">
+            <div class="col-lg-6 col-md-12">
+              <div class="form-group">
+                {{ borrowerForm.username.label() }} <br />
+                {{ borrowerForm.username(class="form-control",
+                placeholder="Username") }} <br />
+                {% if borrowerForm.username.errors %}
+                <div class="error-msg">
+                  {% for error in borrowerForm.username.errors %} {{ error }} {%
+                  endfor %}
+                </div>
+                {% endif %}
               </div>
-              {% endif %}
+              <div class="form-group">
+                {{ borrowerForm.fullname.label() }} <br />
+                {{ borrowerForm.fullname(class="form-control", placeholder="Nama
+                Lengkap") }} <br />
+                {% if borrowerForm.username.errors %}
+                <div class="error-msg">
+                  {% for error in borrowerForm.fullname.errors %} {{ error }} {%
+                  endfor %}
+                </div>
+                {% endif %}
+              </div>
+              <div class="form-group">
+                {{ borrowerForm.email.label() }} <br />
+                {{ borrowerForm.email(class="form-control", placeholder="Email")
+                }} <br />
+                {% if borrowerForm.email.errors %}
+                <div class="error-msg">
+                  {% for error in borrowerForm.email.errors %} {{ error }} {%
+                  endfor %}
+                </div>
+                {% endif %}
+              </div>
+              <div class="form-group">
+                {{ borrowerForm.phone_number.label() }} <br />
+                {{ borrowerForm.phone_number(class="form-control",
+                placeholder="Nomor Telepon") }} <br />
+                {% if borrowerForm.phone_number.errors %}
+                <div class="error-msg">
+                  {% for error in borrowerForm.phone_number.errors %} {{ error
+                  }} {% endfor %}
+                </div>
+                {% endif %}
+              </div>
+              <div class="form-group">
+                {{ borrowerForm.birth_place.label() }} <br />
+                {{ borrowerForm.birth_place(class="form-control",
+                placeholder="Tanggal Lahir") }} <br />
+                {% if borrowerForm.birth_place.errors %}
+                <div class="error-msg">
+                  {% for error in borrowerForm.birth_place.errors %} {{ error }}
+                  {% endfor %}
+                </div>
+                {% endif %}
+              </div>
             </div>
-            <div class="form-group">
-              {{ lenderForm.account_number.label() }}
-              {{ lenderForm.account_number(class="form-control", placeholder="Nomor Rekening") }}
-              {% if lenderForm.account_number.errors %}
-              <div class="error-msg"> {% for error in lenderForm.account_number.errors %} {{ error }} {% endfor %}
+            <div class="col-lg-6 col-md-12">
+              <div class="form-group">
+                {{ borrowerForm.birth_date.label() }} <br />
+                {{ borrowerForm.birth_date(class='datepicker') }} <br />
+                {% if borrowerForm.birth_date.errors %}
+                <div class="error-msg">
+                  {% for error in borrowerForm.birth_date.errors %} {{ error }}
+                  {% endfor %}
+                </div>
+                {% endif %}
               </div>
-              {% endif %}
-            </div>
-            <div class="form-group">
-              {{ lenderForm.account_name.label() }}
-              {{ lenderForm.account_name(class="form-control", placeholder="Nama Pemilik Rekening") }}
-              {% if lenderForm.account_name.errors %}
-              <div class="error-msg"> {% for error in lenderForm.account_name.errors %} {{ error }} {% endfor %}
+              <div class="form-group">
+                {{ borrowerForm.gender.label() }}
+                <br />
+                {% for subfield in borrowerForm.gender %}
+                <tr>
+                  <td>{{ subfield }}</td>
+                  <td>{{ subfield.label }}</td>
+                </tr>
+                {% endfor %}
+                <br />
+                {% if borrowerForm.gender.errors %}
+                <div class="error-msg">
+                  {% for error in borrowerForm.gender.errors %} {{ error }} {%
+                  endfor %}
+                </div>
+                {% endif %}
               </div>
-              {% endif %}
+              <div class="form-group">
+                {{ borrowerForm.password1.label() }} {{
+                borrowerForm.password1(class="form-control",
+                placeholder="Password") }} {% if borrowerForm.password1.errors
+                %}
+                <div class="error-msg">
+                  {% for error in borrowerForm.password1.errors %} {{ error }}
+                  {% endfor %}
+                </div>
+                {% endif %}
+              </div>
+              <div class="form-group">
+                {{ borrowerForm.password2.label() }} {{
+                borrowerForm.password2(class="form-control",
+                placeholder="Konfirmasi Password") }} {% if
+                borrowerForm.password2.errors %}
+                <div class="error-msg">
+                  {% for error in borrowerForm.password2.errors %} {{ error }}
+                  {% endfor %}
+                </div>
+                {% endif %}
+              </div>
             </div>
           </div>
-        </div>
-
-        <div class="text-center mt-2">
-          {{ lenderForm.toc(class="in", id="aggre") }}
-          {{ lenderForm.toc.label(class="aggrement-label") }}
-        </div>
-        
-        <div class="text-center">
-          {{ lenderForm.submit(class="btn mb-5") }}
-          <!-- <button class="btn mb-5" type="submit">Daftar</button> -->
-        </div>
-        <br>
-
-        <div class="text-center mt-2">
-          <p>
-            Sudah memiliki akun? <a class="" href="{{ url_for('login_page') }}">Masuk</a>
-          </p>
-        </div>
-      </form>
-
-      <!-- Form Peminjam -->
-      {{ borrowerForm.hidden_tag() }}
-      <form method="POST" action="" class="w-100" id="peminjam-form">
-        {{ borrowerForm.csrf_token }}
-        <div class="row">
-          <div class="col-lg-6 col-md-12">
-            <div class="form-group">
-              {{ borrowerForm.username.label() }} <br />
-              {{ borrowerForm.username(class="form-control", placeholder="Username") }} <br />
-              {% if borrowerForm.username.errors %}
-              <div class="error-msg"> {% for error in borrowerForm.username.errors %} {{ error }} {% endfor %} </div>
-              {% endif %}
-            </div>
-            <div class="form-group">
-              {{ borrowerForm.fullname.label() }} <br />
-              {{ borrowerForm.fullname(class="form-control", placeholder="Nama Lengkap") }} <br />
-              {% if borrowerForm.username.errors %}
-              <div class="error-msg"> {% for error in borrowerForm.fullname.errors %} {{ error }} {% endfor %} </div>
-              {% endif %}
-            </div>
-            <div class="form-group">
-              {{ borrowerForm.email.label() }} <br />
-              {{ borrowerForm.email(class="form-control", placeholder="Email") }} <br />
-              {% if borrowerForm.email.errors %}
-              <div class="error-msg"> {% for error in borrowerForm.email.errors %} {{ error }} {% endfor %} </div>
-              {% endif %}
-            </div>
-            <div class="form-group">
-              {{ borrowerForm.phone_number.label() }} <br />
-              {{ borrowerForm.phone_number(class="form-control", placeholder="Nomor Telepon") }} <br />
-              {% if borrowerForm.phone_number.errors %}
-              <div class="error-msg"> {% for error in borrowerForm.phone_number.errors %} {{ error }} {% endfor %}
-              </div>
-              {% endif %}
-            </div>
-            <div class="form-group">
-              {{ borrowerForm.birth_place.label() }} <br />
-              {{ borrowerForm.birth_place(class="form-control", placeholder="Tanggal Lahir") }} <br />
-              {% if borrowerForm.birth_place.errors %}
-              <div class="error-msg"> {% for error in borrowerForm.birth_place.errors %} {{ error }} {% endfor %} </div>
-              {% endif %}
-            </div>
+          <div class="text-center mt-2">
+            {{ lenderForm.toc(class="in", id="aggre") }} {{
+            lenderForm.toc.label(class="aggrement-label") }}
           </div>
-          <div class="col-lg-6 col-md-12">
-            <div class="form-group">
-              {{ borrowerForm.birth_date.label() }} <br />
-              {{ borrowerForm.birth_date(class='datepicker') }} <br />
-              {% if borrowerForm.birth_date.errors %}
-              <div class="error-msg"> {% for error in borrowerForm.birth_date.errors %} {{ error }} {% endfor %} </div>
-              {% endif %}
-            </div>
-            <div class="form-group">
-              {{ borrowerForm.gender.label() }}
-              <br />
-              {% for subfield in borrowerForm.gender %}
-              <tr>
-                <td>{{ subfield }}</td>
-                <td>{{ subfield.label }}</td>
-              </tr>
-              {% endfor %}
-              <br />
-              {% if borrowerForm.gender.errors %}
-              <div class="error-msg"> {% for error in borrowerForm.gender.errors %} {{ error }} {% endfor %} </div>
-              {% endif %}
-            </div>
-            <div class="form-group">
-              {{ borrowerForm.password1.label() }}
-              {{ borrowerForm.password1(class="form-control", placeholder="Password") }}
-              {% if borrowerForm.password1.errors %}
-              <div class="error-msg"> {% for error in borrowerForm.password1.errors %} {{ error }} {% endfor %} </div>
-              {% endif %}
-            </div>
-            <div class="form-group">
-              {{ borrowerForm.password2.label() }}
-              {{ borrowerForm.password2(class="form-control", placeholder="Konfirmasi Password") }}
-              {% if borrowerForm.password2.errors %}
-              <div class="error-msg"> {% for error in borrowerForm.password2.errors %} {{ error }} {% endfor %} </div>
-              {% endif %}
-            </div>
+          <div class="text-center">{{ borrowerForm.submit(class="btn") }}</div>
+
+          <div class="text-center mt-2">
+            <p>
+              Sudah memiliki akun?
+              <a class="" href="{{ url_for('login_page') }}">Masuk</a>
+            </p>
           </div>
-        </div>
-        <div class="text-center mt-2">
-          {{ lenderForm.toc(class="in", id="aggre") }}
-          {{ lenderForm.toc.label(class="aggrement-label") }}
-        </div>
-        <div class="text-center">
-          {{ borrowerForm.submit(class="btn") }}
-        </div>
-
-        <div class="text-center mt-2">
-          <p>
-            Sudah memiliki akun? <a class="" href="{{ url_for('login_page') }}">Masuk</a>
-          </p>
-        </div>
-      </form>
-
-    </div>
-  </main>
-  <script src="../static/assets/libraries/jquery/jquery.min.js"></script>
-  <script src="../static/js/pages/auth.js"></script>
-</body>
-
+        </form>
+      </div>
+    </main>
+    <script src="../static/assets/libraries/jquery/jquery.min.js"></script>
+    <script src="../static/js/pages/auth.js"></script>
+  </body>
 </html>
