@@ -1,22 +1,271 @@
-{% extends 'base.html' %}
-
-{% block title %}
-Detail Pendanaan
-{% endblock %}
-
-{% block content %}
-<div class="position-relative overflow-hidden p-3 p-md-5 m-md-3 text-center">
-    <h1 class="display-4 font-weight-normal">Detail Pendanaan</h1>
-
-    <div>
-        {{ loanDetail }}
-    </div>   
-
-    <a href="{{ url_for('pendanaan_form_pemberian_page', loan_id = loanDetail.id ) }}"> 
-        <button class="btn btn-primary"> Beri Pinjaman  </button> 
-    <a>
-
-    <div class="product-device box-shadow d-none d-md-block"></div>
-    <div class="product-device product-device-2 box-shadow d-none d-md-block"></div>
+{% extends 'base.html' %} {% block css %}
+<link rel="stylesheet" href="{{base_path_css}}/css/pendanaanDetail.css" />
+{% endblock %} {% block title %} Detail Pendanaan {% endblock %} {% block
+content %}
+<!-- Business Banner -->
+<div class="container-fluid business-banner text-center">
+  <div class="row">
+    <!-- Business Photo -->
+    <div class="col-lg-5 header-photo">
+      <img
+        src="{{base_path_css}}/assets/images/common/business.jpeg"
+        alt=""
+        width="70%"
+      />
+    </div>
+    <!-- Business Header -->
+    <div class="col-lg-7 business-banner-info">
+      <div class="row text-center business-banner-headline">
+        <div class="col-lg-3 col-xs-3">
+          <label for="" class="fs-2 ranks"> Rank </label>
+        </div>
+        <div class="col-lg-9 col-xs-9">
+          <label for="" class="fs-2"> {{loanDetail.title}} </label>
+        </div>
+      </div>
+      <div class="row text-center">
+        <div class="col-lg-12 progress-view">
+          <p class="text-muted">
+            Telah terkumpul dana sebesar
+            <label class="data-view" for=""> persentase </label>% dengan total
+            Rp<label class="data-view" for="">
+              Nominal Yang Sudah Dipinjamkan </label
+            >.
+          </p>
+        </div>
+      </div>
+      <div class="row text-center">
+        <div class="col-lg-5">
+          <p class="fs-5">Jumlah pinjaman</p>
+          <p class="fs-5 fw-bold">
+            Rp<label class="data-view" for=""> {{loanDetail.nominal}} </label>,-
+          </p>
+        </div>
+        <div class="col-lg-4">
+          <p class="fs-5">Bunga Efektif</p>
+          <p class="fs-5 fw-bold">
+            <label class="data-view" for="">{{ loanDetail.interest }}</label>%
+          </p>
+        </div>
+        <div class="col-lg-3">
+          <p class="fs-5">Tenor</p>
+          <p class="fs-5 fw-bold">
+            <label class="data-view" for=""> {{ loanDetail.tenor}} </label>
+            Bulan
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- Box Investasi -->
+<div class="container-fluid text-center">
+  <div class="row box-invest">
+    <div class="col-lg-5 info-box">
+      <p class="fs-6">Dana yang sudah terkumpul saat ini</p>
+      <p class="fs-4">
+        Rp
+        <label for="" class="data-view"> Nominal Yang Sudah Dipinjamkan </label
+        >,-
+      </p>
+    </div>
+    <div class="col-lg-7 info-box">
+      <a
+        class="btn btn-primary"
+        href="{{ url_for('pendanaan_form_pemberian_page', loan_id = loanDetail.id ) }}"
+        role="button"
+      >
+        Ajukan Pendanaan
+      </a>
+      <p class="fs-6">
+        Minimum nominal dana yang diinvestasikan adalah Rp100.000,-
+      </p>
+    </div>
+  </div>
+</div>
+<!-- Tab Informasi Bisnis -->
+<div class="container-fluid business-info-area">
+  <ul class="nav nav-tabs">
+    <li class="nav-item">
+      <a
+        class="nav-link active fs-5"
+        data-toggle="tab"
+        href="#info-pendanaan-tab"
+      >
+        Info Pendanaan
+      </a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link fs-5" data-toggle="tab" href="#detail-usaha-tab">
+        Detail Usaha
+      </a>
+    </li>
+  </ul>
+  <div class="tab-content">
+    <div class="tab-pane active" id="info-pendanaan-tab">
+      <div class="tab-detail border g-0 rounded shadow-sm">
+        <div class="row">
+          <div class="col text-area">
+            <p class="fs-6 fw-bold">Alasan Peminjaman</p>
+            <p class="fs-5">
+              <label class="data-view" for="">
+                {{ loanDetail.loan_reason }}
+              </label>
+            </p>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-2 text-area">
+            <p class="fs-6 fw-bold">Awal Pendanaan</p>
+            <p class="fs-5">
+              <label class="data-view" for="">
+                {{ loanDetail.start_loan }}
+              </label>
+            </p>
+          </div>
+          <div class="col-2 text-area">
+            <p class="fs-6 fw-bold">Akhir Pendanaan</p>
+            <p class="fs-5">
+              <label class="data-view" for="">
+                {{ loanDetail.end_loan }}
+              </label>
+            </p>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-4">
+            <div class="col-12 text-area">
+              <p class="fs-6 fw-bold">Bunga Efektif</p>
+              <p class="fs-5">
+                <label class="data-view" for=""> {{loanDetail.interest}}</label
+                >%
+              </p>
+            </div>
+            <div class="col-12 text-area">
+              <p class="fs-6 fw-bold">Pinjaman & Anggunan</p>
+              <p class="fs-5 txt-mbl-view">
+                Dilindungi oleh asuransi pinjaman dengan nilai proteksi
+                pengembalian hingga 90% jika mengikuti program asuransi “Warung
+                Skuy Assurance” sesuai dengan ketentuan yang berlaku.
+              </p>
+            </div>
+          </div>
+          <div class="col-8">
+            <p class="fs-6 fw-bold text-center">Hitung Peminjaman</p>
+            <div class="calculator-box">
+              <div class="row">
+                <div class="col-6">
+                  <div class="text-area">
+                    <p class="fs-6 fw-bold">Pokok</p>
+                    <p class="fs-5">
+                      Rp<label class="data-view" for=""> Dana Pokok </label>,-
+                    </p>
+                  </div>
+                  <div class="text-area">
+                    <p class="fs-6 fw-bold">Bunga</p>
+                    <p class="fs-5">
+                      Rp<label class="data-view" for=""> Bunga Dana </label>,-
+                    </p>
+                  </div>
+                </div>
+                <div class="col-6">
+                  <div class="text-area">
+                    <p class="fs-6 fw-bold">Total Investasi</p>
+                    <p class="fs-5">
+                      Rp<label class="data-view" for="">
+                        Dana Yang Didapat </label
+                      >,-
+                    </p>
+                  </div>
+                  <div class="text-area">
+                    <button type="button" class="btn btn-warning">
+                      Hitung
+                    </button>
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col">
+                  <div class="input-calculation text-center">
+                    <div class="mb-3">
+                      <input
+                        type="number"
+                        class="calculator-textbox"
+                        id=""
+                        aria-describedby="numberHelp"
+                        placeholder="10000000"
+                      />
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="tab-pane" id="detail-usaha-tab">
+      <div class="tab-detail border g-0 rounded shadow-sm">
+        <div class="row">
+          <div class="col text-area">
+            <p class="fs-6 fw-bold">Keterangan Usaha</p>
+            <p class="fs-5">
+              <label class="data-view" for="">
+                {{loanDetail.business_desc}}
+              </label>
+            </p>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-6 text-area">
+            <p class="fs-6 fw-bold">Domisili</p>
+            <p class="fs-5">
+              <label class="data-view" for=""> {{loanDetail.location}} </label>
+            </p>
+          </div>
+          <div class="col-6 text-area">
+            <p class="fs-6 fw-bold">Tahun Rintis</p>
+            <p class="fs-5">
+              <label class="data-view" for="">
+                {{loanDetail.start_year}}
+              </label>
+            </p>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-6 text-area">
+            <p class="fs-6 fw-bold">Pendapatan Bersih Per Bulan</p>
+            <p class="fs-5">
+              Rp<label class="data-view" for="">
+                {{loanDetail.net_income}} </label
+              >,-
+            </p>
+          </div>
+          <div class="col-6 text-area">
+            <p class="fs-6 fw-bold">Modal</p>
+            <p class="fs-5">
+              Rp<label class="data-view" for=""> {{loanDetail.modal}} </label>,-
+            </p>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-6 text-area">
+            <p class="fs-6 fw-bold">Kategori Usaha</p>
+            <p class="fs-5">
+              <label class="data-view" for=""> {Makanan} </label>
+            </p>
+          </div>
+          <div class="text-area">
+            <p class="fs-6 fw-bold">Alamat</p>
+            <p class="fs-5">
+              <label class="data-view" for="">
+                {{loanDetail.business_address}}
+              </label>
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
 {% endblock %}

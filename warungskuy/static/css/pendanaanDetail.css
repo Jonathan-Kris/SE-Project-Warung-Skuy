@@ -1,0 +1,383 @@
+html,
+body {
+  margin: 0;
+  padding: 0;
+  font-family: Roboto;
+  background-color: #F5F5F5;
+}
+
+.business-banner {
+    padding: 4rem 4rem;
+    background-color: #FBEEAC;
+}
+
+.business-banner-info {
+    padding: 2rem 0rem;
+}
+
+.business-banner-headline {
+    padding: 2rem;
+}
+
+.header-photo {
+    padding: 2rem 0rem;
+}
+
+.text-muted {
+    padding: 2rem;
+}
+
+.fs-2 {
+    font-size: 40px;
+    padding: 0rem 1rem;
+}
+
+.fs-3 {
+    font-size: 32px;
+    padding: 0rem 1rem;
+}
+
+.fs-4 {
+    font-size: 27px;
+    padding: 0rem 1rem;
+}
+
+.fs-5 {
+    font-size: 20px;
+    padding: 0rem 1rem;
+}
+
+.fs-6 {
+    font-size: 17px;
+    padding: 0rem 1rem;
+}
+
+.fs-7 {
+    font-size: 12px;
+    padding: 0rem 1rem;
+}
+
+.fw-bold {
+    font-weight: bold;
+}
+
+.ranks {
+    background-color: white;
+    border-radius: 1.5rem;
+    color: green;
+}
+
+.data-view {
+    color:blue;
+    font-style: italic;
+}
+
+.btn-primary {
+    padding: 0.4rem 4rem;
+    background-color: #28527A;
+    border-radius: 1rem;
+}
+
+.btn-primary:hover {
+    background-color: #537CD9;
+}
+
+.box-invest {
+    margin: 3rem 2rem;
+    border-radius: 1rem;
+    background-color: #F4D160;
+    align-items: center;
+}
+
+.info-box {
+    align-items: center;
+    padding-top: 1.5rem;
+}
+
+.text-area {
+    padding: 1.5rem ;
+}
+
+.nav-tabs .nav-link.active {
+    background-color: white;
+    color: black !important;
+    font-weight: bold;
+    border-top-right-radius: 2rem;
+    border-top-left-radius: 2rem;
+    border-left: 6px solid  #DFE2E7;
+    border-right: 6px solid  #DFE2E7;
+    border-top: 6px solid #DFE2E7;
+    transform: scale(1.1);
+}
+
+.tab-detail {
+    padding: 3rem 5rem;
+    background-color: white;
+}
+
+.nav-tabs .nav-link {
+    background-color: #FBEEAC;
+    border-top-right-radius: 2rem;
+    border-top-left-radius: 2rem;
+    color: black !important;
+    font-weight: normal;
+    border: 6px solid #FBEEAC;
+    padding: 1rem 4rem;
+}
+
+.business-info-area {
+    width: 90%;
+    margin: 5rem 5rem;
+}
+
+.calculator-box {
+    padding: 1rem 2rem;
+    background-color: #cecece;
+    border-radius: 2rem;
+}
+
+.btn-warning {
+    padding: 0.5rem 3rem;
+    border-radius: 2rem;
+    color: black;
+    background-color: #FBEEAC;
+}
+
+.calculator-textbox {
+    border-radius: 1rem;
+    width: 90%;
+    height: 3rem;
+    border-color: none;
+}
+
+.box-nominal-input {
+    margin: 3rem 2rem;
+    border-radius: 1rem;
+    background-color: #F4D160;
+    align-items: center;
+}
+
+.txt-pdl {
+    padding-left: 5rem;
+}
+
+.box-pendanaan {
+    background-color: white;
+    margin: 0rem 4rem;
+    margin-bottom: 6rem;
+    padding: 4rem 8rem;
+    width: 90%;
+    border-radius: 4rem;
+}
+
+.data-box-color {
+    background-color: #FBEEAC;
+    padding: 0.5rem 1rem;
+    border-radius: 1rem;
+}
+
+.status-box-color {
+    background-color: #69BC7B;
+    color: white;
+    padding: 0.5rem 1rem;
+    border-radius: 1rem;
+}
+
+.data-box {
+    background-color: white;
+    color: black;
+    padding: 0rem 2rem;
+    border: 1px solid gray;
+    border-radius: 1.5rem;
+}
+
+@media all and (max-width: 575.98px){
+    .business-banner {
+        padding: 2rem 1rem;
+        background-color: #FBEEAC;
+    }
+    
+    .business-banner-info {
+        padding: 0.1rem 0rem;
+    }
+    
+    .business-banner-headline {
+        padding: 0.5rem;
+    }
+    
+    .header-photo {
+        padding: 0.5rem 0rem;
+    }
+    
+    .text-muted {
+        padding: 0.5rem;
+    }
+    
+    .fs-2 {
+        font-size: 30px;
+        padding: 0rem 0.2rem;
+    }
+    
+    .fs-3 {
+        font-size: 25px;
+        padding: 0rem 0.2rem;
+    }
+    
+    .fs-4 {
+        font-size: 18px;
+        padding: 0rem 0.5rem;
+    }
+    
+    .fs-5 {
+        font-size: 15px;
+        padding: 0rem 0.1rem;
+    }
+    
+    .fs-6 {
+        font-size: 10px;
+        padding: 0rem 0.1rem;
+    }
+    
+    .fs-7 {
+        font-size: 8px;
+        padding: 0rem 0.1rem;
+    }
+    
+    .txt-mbl-view {
+        font-size: smaller;
+    }
+
+    .fw-bold {
+        font-weight: bold;
+    }
+    
+    .ranks {
+        background-color: white;
+        border-radius: 0.7rem;
+        color: green;
+    }
+    
+    .data-view {
+        color:blue;
+        font-style: italic;
+    }
+    
+    .btn-primary {
+        padding: 0.2rem 3rem;
+        background-color: #28527A;
+        border-radius: 1rem;
+    }
+    
+    .btn-primary:hover {
+        background-color: #537CD9;
+    }
+    
+    .box-invest {
+        margin: 2rem 1rem;
+        border-radius: 1rem;
+        background-color: #F4D160;
+        align-items: center;
+    }
+    
+    .info-box {
+        align-items: center;
+        padding-top: 1rem;
+    }
+    
+    .text-area {
+        padding: 1rem;
+    }
+    
+    .nav-tabs .nav-link.active {
+        background-color: white;
+        color: black !important;
+        font-weight: bold;
+        border-top-right-radius: 1rem;
+        border-top-left-radius: 1rem;
+        border-left: 3px solid  #DFE2E7;
+        border-right: 3px solid  #DFE2E7;
+        border-top: 3px solid #DFE2E7;
+        transform: scale(1.01);
+    }
+    
+    .tab-detail {
+        padding: 1rem 0.5rem;
+        background-color: white;
+    }
+    
+    .nav-tabs .nav-link {
+        background-color: #FBEEAC;
+        border-top-right-radius: 1rem;
+        border-top-left-radius: 1rem;
+        color: black !important;
+        font-weight: normal;
+        border: 3px solid #FBEEAC;
+        padding: 0.5rem 2rem;
+    }
+    
+    .business-info-area {
+        width: 99%;
+        margin: 1rem 0.5rem;
+    }
+    
+    .calculator-box {
+        padding: 0.2rem 0.4rem;
+        background-color: #cecece;
+        border-radius: 1rem;
+    }
+    
+    .btn-warning {
+        padding: 0.2rem 0.4rem;
+        border-radius: 0.5rem;
+        color: black;
+        background-color: #FBEEAC;
+    }
+    
+    .calculator-textbox {
+        border-radius: 1rem;
+        width: 99%;
+        height: 2rem;
+        border-color: none;
+    }
+    
+    .box-nominal-input {
+        margin: 1rem 0.3rem;
+        border-radius: 1.5rem;
+        background-color: #F4D160;
+        align-items: center;
+    }
+    
+    .txt-pdl {
+        padding-left: 1rem;
+    }
+    
+    .box-pendanaan {
+        background-color: white;
+        margin: 0rem 1rem;
+        margin-bottom: 3rem;
+        padding: 2rem 1rem;
+        width: 90%;
+        border-radius: 2rem;
+    }
+    
+    .data-box-color {
+        background-color: #FBEEAC;
+        padding: 0.5rem 1rem;
+        border-radius: 1rem;
+    }
+    
+    .status-box-color {
+        background-color: #69BC7B;
+        color: white;
+        padding: 0.5rem 1rem;
+        border-radius: 1rem;
+    }
+    
+    .data-box {
+        background-color: white;
+        color: black;
+        padding: 0rem 2rem;
+        border: 1px solid gray;
+        border-radius: 1.5rem;
+    }
+}
