@@ -51,43 +51,39 @@
 
 <section class="pendanaan container">
   <h1>Pendanaan Yang Berlangsung</h1>
-  <div class="row">
-    {% if countItemsOngoing > 0 %}
-    <div class="d-flex align-items-center flex-wrap">
-      {% for item in itemsOngoing %}
-      <div class="col-4">
-        <div class="card">
-          <a href="{{ url_for('pendanaan_detail_page', loan_id= item.id) }}">
-            <img
-              class="card-img-top"
-              src="{{base_path_css}}/assets/images/pages/pendanaan/Card-img.png"
-              alt="Card image cap"
-            />
-            <div class="card-body">
-              <h5 class="card-title">{{ item.title }}</h5>
-              <div class="card-text">
-                <div>
-                  <p class="card-text-sub">Jumlah Pinjaman</p>
-                  <p>Rp. {{ item.nominal }}</p>
+  <div class="row d-flex align-items-center flex-wrap">
+    {% if countItemsOngoing > 0 %} {% for item in itemsOngoing %}
+    <div class="col-4">
+      <div class="card">
+        <a href="{{ url_for('pendanaan_detail_page', loan_id= item.id) }}">
+          <img
+            class="card-img-top"
+            src="{{base_path_css}}/assets/images/pages/pendanaan/Card-img.png"
+            alt="Card image cap"
+          />
+          <div class="card-body">
+            <h5 class="card-title">{{ item.title }}</h5>
+            <div class="card-text">
+              <div>
+                <p class="card-text-sub">Jumlah Pinjaman</p>
+                <p>Rp. {{ item.nominal }}</p>
+              </div>
+              <div class="row">
+                <div class="col">
+                  <p class="card-text-sub">Bunga Efektif</p>
+                  <p>{{item.interest}}%</p>
                 </div>
-                <div class="row">
-                  <div class="col">
-                    <p class="card-text-sub">Bunga Efektif</p>
-                    <p>{{item.interest}}%</p>
-                  </div>
-                  <div class="col">
-                    <p class="card-text-sub">Tenor</p>
-                    <p>{{item.tenor}}</p>
-                  </div>
+                <div class="col">
+                  <p class="card-text-sub">Tenor</p>
+                  <p>{{item.tenor}}</p>
                 </div>
               </div>
             </div>
-          </a>
-        </div>
+          </div>
+        </a>
       </div>
-      {% endfor %}
     </div>
-    {% else %}
+    {% endfor %} {% else %}
     <p class="pendanaan-none text-center">
       Anda tidak memiliki pendanaan yang sedang berlangsung
     </p>
