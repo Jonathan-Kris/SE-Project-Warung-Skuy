@@ -55,9 +55,9 @@
           <div class="row">
             <div class="col-lg-6 col-md-12">
               <div class="form-group">
-                {{ lenderForm.username.label() }} {{
-                lenderForm.username(class="form-control", placeholder="User
-                Name") }} {% if lenderForm.username.errors %}
+                {{ lenderForm.username.label() }} 
+                {{ lenderForm.username(class="form-control", placeholder="User Name") }} 
+                {% if lenderForm.username.errors %}
                 <div class="error-msg">
                   {% for error in lenderForm.username.errors %} {{ error }} {%
                   endfor %}
@@ -65,9 +65,9 @@
                 {% endif %}
               </div>
               <div class="form-group">
-                {{ lenderForm.fullname.label() }} {{
-                lenderForm.fullname(class="form-control", placeholder="Nama
-                Lengkap") }} {% if lenderForm.fullname.errors %}
+                {{ lenderForm.fullname.label() }} 
+                {{ lenderForm.fullname(class="form-control", placeholder="Nama Lengkap") }}
+                {% if lenderForm.fullname.errors %}
                 <div class="error-msg">
                   {% for error in lenderForm.fullname.errors %} {{ error }} {%
                   endfor %}
@@ -96,9 +96,9 @@
                 {% endif %}
               </div>
               <div class="form-group">
-                {{ lenderForm.nik.label() }} {{
-                lenderForm.nik(class="form-control", placeholder="Nomor Induk
-                Kependudukan") }} {% if lenderForm.nik.errors %}
+                {{ lenderForm.nik.label() }} 
+                {{ lenderForm.nik(class="form-control", placeholder="Nomor Induk Kependudukan") }} 
+                {% if lenderForm.nik.errors %}
                 <div class="error-msg">
                   {% for error in lenderForm.nik.errors %} {{ error }} {% endfor
                   %}
@@ -129,9 +129,9 @@
             </div>
             <div class="col-lg-6 col-md-12">
               <div class="form-group">
-                {{ lenderForm.address.label() }} {{
-                lenderForm.address(class="form-control", placeholder="Alamat
-                Lengkap") }} {% if lenderForm.address.errors %}
+                {{ lenderForm.address.label() }} 
+                {{ lenderForm.address(class="form-control", placeholder="Alamat Lengkap") }} 
+                {% if lenderForm.address.errors %}
                 <div class="error-msg">
                   {% for error in lenderForm.address.errors %} {{ error }} {%
                   endfor %}
@@ -139,9 +139,9 @@
                 {% endif %}
               </div>
               <div class="form-group">
-                {{ lenderForm.birth_place.label() }} {{
-                lenderForm.birth_place(class="form-control", placeholder="Tempat
-                Lahir") }} {% if lenderForm.birth_place.errors %}
+                {{ lenderForm.birth_place.label() }} 
+                {{ lenderForm.birth_place(class="form-control", placeholder="Tempat Lahir") }} 
+                {% if lenderForm.birth_place.errors %}
                 <div class="error-msg">
                   {% for error in lenderForm.birth_place.errors %} {{ error }}
                   {% endfor %}
@@ -197,9 +197,9 @@
                 {% endif %}
               </div>
               <div class="form-group">
-                {{ lenderForm.account_name.label() }} {{
-                lenderForm.account_name(class="form-control", placeholder="Nama
-                Pemilik Rekening") }} {% if lenderForm.account_name.errors %}
+                {{ lenderForm.account_name.label() }} 
+                {{ lenderForm.account_name(class="form-control", placeholder="Nama Pemilik Rekening") }} 
+                {% if lenderForm.account_name.errors %}
                 <div class="error-msg">
                   {% for error in lenderForm.account_name.errors %} {{ error }}
                   {% endfor %}
@@ -247,8 +247,7 @@
               </div>
               <div class="form-group">
                 {{ borrowerForm.fullname.label() }} <br />
-                {{ borrowerForm.fullname(class="form-control", placeholder="Nama
-                Lengkap") }} <br />
+                {{ borrowerForm.fullname(class="form-control", placeholder="Nama Lengkap") }} <br />
                 {% if borrowerForm.username.errors %}
                 <div class="error-msg">
                   {% for error in borrowerForm.fullname.errors %} {{ error }} {%
