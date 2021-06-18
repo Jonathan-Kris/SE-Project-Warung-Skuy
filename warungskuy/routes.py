@@ -5,6 +5,8 @@ from warungskuy.forms import LendingForm, LoanForm, LoginForm, RegisterBorrowerF
 from warungskuy import db
 from flask_login import login_user, logout_user, login_required, current_user
 from sqlalchemy.sql import func
+import uuid
+
 
 @app.route("/")
 @app.route("/home")
@@ -20,22 +22,22 @@ def register_page():
     if lenderForm.validate_on_submit():
         if lenderForm.bank.data == 'XXXXXX':
             err_Bank = "Please select a bank"
-            return redirect(url_for('login_page'), errBank = err_Bank)
+            return redirect(url_for('login_page'), errBank=err_Bank)
 
         user_to_create = Lender(username=lenderForm.username.data,
-                            email=lenderForm.email.data,
-                            #password=lenderForm.password1.data, #DISABLE FOR TESTING PURPOSE ONLY
-                            password_hash=borrowerForm.password1.data,
-                            phone_number=lenderForm.phone_number.data,
-                            fullname=lenderForm.fullname.data,
-                            nik=lenderForm.nik.data,
-                            address=lenderForm.address.data,
-                            birth_place=lenderForm.birth_place.data,
-                            birth_date=lenderForm.birth_date.data,
-                            gender='L' if lenderForm.gender.data == 'Laki-Laki' else 'P',
-                            bank=lenderForm.bank.data,
-                            account_number=lenderForm.account_number.data,
-                            account_name=lenderForm.account_name.data,)
+                                email=lenderForm.email.data,
+                                # password=lenderForm.password1.data, #DISABLE FOR TESTING PURPOSE ONLY
+                                password_hash=borrowerForm.password1.data,
+                                phone_number=lenderForm.phone_number.data,
+                                fullname=lenderForm.fullname.data,
+                                nik=lenderForm.nik.data,
+                                address=lenderForm.address.data,
+                                birth_place=lenderForm.birth_place.data,
+                                birth_date=lenderForm.birth_date.data,
+                                gender='L' if lenderForm.gender.data == 'Laki-Laki' else 'P',
+                                bank=lenderForm.bank.data,
+                                account_number=lenderForm.account_number.data,
+                                account_name=lenderForm.account_name.data,)
 
         db.session.add(user_to_create)
         db.session.commit()
@@ -48,16 +50,16 @@ def register_page():
 
     if borrowerForm.validate_on_submit():
         user_to_create = Borrower(
-                            username=borrowerForm.username.data,
-                            email=borrowerForm.email.data,
-                            #password=borrowerForm.password1.data, #DISABLE FOR TESTING PURPOSE ONLY
-                            password_hash=borrowerForm.password1.data,
-                            phone_number=borrowerForm.phone_number.data,
-                            fullname=borrowerForm.fullname.data,
-                            birth_place=borrowerForm.birth_place.data,
-                            birth_date=borrowerForm.birth_date.data,
-                            gender='L' if borrowerForm.gender.data == 'Laki-Laki' else 'P',
-                            )
+            username=borrowerForm.username.data,
+            email=borrowerForm.email.data,
+            # password=borrowerForm.password1.data, #DISABLE FOR TESTING PURPOSE ONLY
+            password_hash=borrowerForm.password1.data,
+            phone_number=borrowerForm.phone_number.data,
+            fullname=borrowerForm.fullname.data,
+            birth_place=borrowerForm.birth_place.data,
+            birth_date=borrowerForm.birth_date.data,
+            gender='L' if borrowerForm.gender.data == 'Laki-Laki' else 'P',
+        )
 
         db.session.add(user_to_create)
         db.session.commit()
@@ -77,7 +79,8 @@ def login_page():
     if form.validate_on_submit():
         # Check if user is exists
         lender = Lender.query.filter_by(username=form.username.data).first()
-        borrower = Borrower.query.filter_by(username=form.username.data).first()
+        borrower = Borrower.query.filter_by(
+            username=form.username.data).first()
 
         print('Lender :', lender)
         print('Borrower :', borrower)
@@ -108,20 +111,22 @@ def login_page():
 
     return render_template('login.html', form=form)
 
+
 @app.route('/logout')
 def logout_page():
     flash("You have been logged out!", category="info")
     logout_user()
     return redirect(url_for('home_page'))
 
+
 @app.route('/pendanaan')
 def pendanaan_page():
     if current_user.is_authenticated:
         items_pendanaan = Loan.query.all()
-        items_ongoing =  Loan.query\
-            .join(LendingTransaction, Loan.id == LendingTransaction.loan_id)\
+
+        items_ongoing = Loan.query.join(LendingTransaction).add_columns(Loan.id, Loan.title, LendingTransaction.lending_amount, Loan.interest, Loan.tenor)\
+            .filter(Loan.id == LendingTransaction.loan_id)\
             .filter(LendingTransaction.lender_id == current_user.id)
-            # .filter(Loan.borrower == LendingTransaction.lender_id)\
 
         # Could pose performance issue as data gets larger, but will do later. Can be solved by adding counter field in the db
         # https://stackoverflow.com/questions/16000287/how-to-get-length-of-or-count-of-datastore-entities-through-a-reference-collec
@@ -131,10 +136,11 @@ def pendanaan_page():
             .filter(LendingTransaction.lender_id == current_user.id)\
             .count()
 
-        return render_template('pendanaan/main.html', itemsPendanaan = items_pendanaan, itemsOngoing = items_ongoing,\
-            countItemsPendanaan = count_items_pendanaan, countItemsOngoing = count_items_ongoing)
+        return render_template('pendanaan/main.html', itemsPendanaan=items_pendanaan, itemsOngoing=items_ongoing,
+                               countItemsPendanaan=count_items_pendanaan, countItemsOngoing=count_items_ongoing)
     else:
         return render_template('pendanaan/main.html')
+
 
 @app.route('/pendanaan/detail/<loan_id>')
 def pendanaan_detail_page(loan_id):
@@ -142,7 +148,8 @@ def pendanaan_detail_page(loan_id):
     print('Loan_detail_id : ', loan_detail.id)
 
     # Get all transaction of this loan
-    loan_transaction = LendingTransaction.query.filter_by(loan_id = loan_detail.id).all()
+    loan_transaction = LendingTransaction.query.filter_by(
+        loan_id=loan_detail.id).all()
     print(loan_transaction)
 
     # Count total amount of lended money
@@ -153,13 +160,14 @@ def pendanaan_detail_page(loan_id):
 
     # Lended percentage
     percentage = round((total_loan / loan_detail.nominal * 100), 2)
-    print('Percentage:', percentage) 
+    print('Percentage:', percentage)
 
     # Store in session
     session['total_loan'] = total_loan
     session['percentage'] = percentage
 
-    return render_template('pendanaan/detail.html', loanDetail = loan_detail, totalLoan = total_loan, percentage = percentage)
+    return render_template('pendanaan/detail.html', loanDetail=loan_detail, totalLoan=total_loan, percentage=percentage)
+
 
 @app.route('/pendanaan/form-pemberian/<loan_id>', methods=['POST', 'GET'])
 def pendanaan_form_pemberian_page(loan_id):
@@ -168,14 +176,15 @@ def pendanaan_form_pemberian_page(loan_id):
     percentage = session.get('percentage', None)
 
     print('Total Loan :', total_loan)
-    print('Percentage:', percentage) 
+    print('Percentage:', percentage)
 
     form = LendingForm()
-    
+
     if form.validate_on_submit():
         print(form.lending_amount.data)
 
         lendingTr = LendingTransaction(
+            trans_id=str(uuid.uuid4()),
             lender_id=current_user.id,
             loan_id=loan_id,
             lending_amount=form.lending_amount.data
@@ -190,17 +199,17 @@ def pendanaan_form_pemberian_page(loan_id):
         session.pop('total_loan')
         session.pop('percentage')
 
-        return redirect(url_for('pendanaan_detail_page', loan_id = loan_id))
+        return redirect(url_for('pendanaan_detail_page', loan_id=loan_id))
 
-    return render_template('pendanaan/form-pemberian.html', form=form, loanDetail = loan_detail, totalLoan = total_loan, percentage = percentage) 
+    return render_template('pendanaan/form-pemberian.html', form=form, loanDetail=loan_detail, totalLoan=total_loan, percentage=percentage)
+
 
 @app.route('/pinjaman')
 def pinjaman_main_page():
     if current_user.is_authenticated:
         items_pinjaman_user = Loan.query\
-            .join(LendingTransaction, Loan.id == LendingTransaction.loan_id)\
             .filter(Loan.borrower == current_user.id)
-            # .filter(Loan.borrower == LendingTransaction.lender_id)\
+        # .filter(Loan.borrower == LendingTransaction.lender_id)\
 
         # Could pose performance issue as data gets larger, but will do later. Can be solved by adding counter field in the db
         # https://stackoverflow.com/questions/16000287/how-to-get-length-of-or-count-of-datastore-entities-through-a-reference-collec
@@ -208,12 +217,11 @@ def pinjaman_main_page():
             .join(LendingTransaction, Loan.id == LendingTransaction.loan_id)\
             .filter(Loan.borrower == current_user.id)\
             .count()
-        
-        return render_template('pinjaman/main.html', itemsPinjamanUser = items_pinjaman_user,\
-            countItemsPinjamanUser = count_items_pinjaman_user)
+
+        return render_template('pinjaman/main.html', itemsPinjamanUser=items_pinjaman_user,
+                               countItemsPinjamanUser=count_items_pinjaman_user)
     else:
         return render_template('pinjaman/main.html')
-
 
 
 @app.route('/pinjaman/pengajuan', methods=['POST', 'GET'])
@@ -222,33 +230,33 @@ def pinjaman_pengajuan_page():
 
     if form.validate_on_submit():
         loan_to_create = Loan(title=form.title.data,
-                            tenor=form.tenor.data,
-                            start_loan=form.start_loan.data,
-                            end_loan=form.end_loan.data,
-                            nominal=form.nominal.data,
-                            interest=form.interest.data,
-                            loan_reason=form.loan_reason.data,
-                            business_desc=form.business_desc.data,
-                            location=form.location.data,
-                            start_year=form.start_year.data,
-                            business_address=form.business_address.data,
-                            gross_income=form.gross_income.data,
-                            net_income=form.net_income.data,
-                            modal=form.modal.data,
-                            borrower=current_user.id,
-                            )
+                              tenor=form.tenor.data,
+                              start_loan=form.start_loan.data,
+                              end_loan=form.end_loan.data,
+                              nominal=form.nominal.data,
+                              interest=form.interest.data,
+                              loan_reason=form.loan_reason.data,
+                              business_desc=form.business_desc.data,
+                              location=form.location.data,
+                              start_year=form.start_year.data,
+                              business_address=form.business_address.data,
+                              gross_income=form.gross_income.data,
+                              net_income=form.net_income.data,
+                              modal=form.modal.data,
+                              borrower=current_user.id,
+                              )
 
         db.session.add(loan_to_create)
         db.session.commit()
 
         # With successful registration, auto logged in user to market
         # login_user(user_to_create)
-        flash(
-            f"Loan request successfully created!", category="success")
+        print("Loan request successfully created!")
 
         return redirect(url_for('pinjaman_main_page'))
 
     return render_template('pinjaman/pengajuan.html', form=form)
+
 
 @app.route('/cara-kerja')
 def cara_kerja_page():

@@ -52,7 +52,8 @@
 <section class="pendanaan container">
   <h1>Pendanaan Yang Berlangsung</h1>
   <div class="row d-flex align-items-center flex-wrap">
-    {% if countItemsOngoing > 0 %} {% for item in itemsOngoing %}
+    {% if countItemsOngoing > 0 %} 
+    {% for item in itemsOngoing %}
     <div class="col-4">
       <div class="card">
         <a href="{{ url_for('pendanaan_detail_page', loan_id= item.id) }}">
@@ -65,8 +66,8 @@
             <h5 class="card-title">{{ item.title }}</h5>
             <div class="card-text">
               <div>
-                <p class="card-text-sub">Jumlah Pinjaman</p>
-                <p>Rp. {{ item.nominal }}</p>
+                <p class="card-text-sub">Jumlah Investasi Pendanaan</p>
+                <p>Rp. {{ item.lending_amount }}</p>
               </div>
               <div class="row">
                 <div class="col">
