@@ -1,7 +1,14 @@
-{% extends 'base.html' %} {% block css %}
+{% extends 'base.html' %} 
+
+{% block css %}
 <link rel="stylesheet" href="{{base_path_css}}/css/pendanaanDetail.css" />
-{% endblock %} {% block title %} Detail Pendanaan {% endblock %} {% block
-content %}
+{% endblock %} 
+
+{% block title %} 
+Detail Pendanaan 
+{% endblock %} 
+
+{% block content %}
 <link rel="stylesheet" href="style.css" />
 <div class="container-fluid business-banner text-center">
   <div class="row">
@@ -27,9 +34,9 @@ content %}
         <div class="col-lg-12 progress-view">
           <p class="text-muted">
             Telah terkumpul dana sebesar
-            <label class="data-view" for=""> persentase </label>% dengan total
-            Rp<label class="data-view" for="">
-              Nominal Yang Sudah Dipinjamkan </label
+            <label class="data-view" for=""> {{ percentage }} </label>% dengan total
+            Rp <label class="data-view" for="">
+            {{ totalLoan }} </label
             >.
           </p>
         </div>
@@ -67,7 +74,7 @@ content %}
       <p class="fs-6">Dana yang sudah terkumpul saat ini</p>
       <p class="fs-4">
         Rp
-        <label for="" class="data-view"> Nominal Yang Sudah Dipinjamkan </label
+        <label for="" class="data-view"> {{ totalLoan }}  </label
         >,-
       </p>
       <br />
@@ -80,6 +87,11 @@ content %}
           <div id="numberHelp" class="form-text text-left txt-pdl">
             Dalam Rupiah
           </div>
+        </div>
+        <div class="error-msg">
+          {% for error in form.lending_amount.errors %} 
+          {{ error }} 
+          {% endfor %}
         </div>
       </div>
       <div class="col-lg-12 info-box">

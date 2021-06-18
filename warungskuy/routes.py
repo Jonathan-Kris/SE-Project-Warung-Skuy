@@ -1,14 +1,10 @@
 from warungskuy import app
 from flask import render_template, redirect, url_for, flash, request, session
-# Import Item Model
 from warungskuy.models import Borrower, Lender, LendingTransaction, Loan, User
-# Import Forms
 from warungskuy.forms import LendingForm, LoanForm, LoginForm, RegisterBorrowerForm, RegisterLenderForm
-# Import Database
 from warungskuy import db
-# Import login manager
 from flask_login import login_user, logout_user, login_required, current_user
-
+from sqlalchemy.sql import func
 
 @app.route("/")
 @app.route("/home")
@@ -143,14 +139,36 @@ def pendanaan_page():
 @app.route('/pendanaan/detail/<loan_id>')
 def pendanaan_detail_page(loan_id):
     loan_detail = Loan.query.filter_by(id=loan_id).first()
+    print('Loan_detail_id : ', loan_detail.id)
 
-    return render_template('pendanaan/detail.html', loanDetail = loan_detail)
+    # Get all transaction of this loan
+    loan_transaction = LendingTransaction.query.filter_by(loan_id = loan_detail.id).all()
+    print(loan_transaction)
+
+    # Count total amount of lended money
+    total_loan = 0
+    for transac in loan_transaction:
+        total_loan += transac.lending_amount
+    print('Total Loan :', total_loan)
+
+    # Lended percentage
+    percentage = round((total_loan / loan_detail.nominal * 100), 2)
+    print('Percentage:', percentage) 
+
+    # Store in session
+    session['total_loan'] = total_loan
+    session['percentage'] = percentage
+
+    return render_template('pendanaan/detail.html', loanDetail = loan_detail, totalLoan = total_loan, percentage = percentage)
 
 @app.route('/pendanaan/form-pemberian/<loan_id>', methods=['POST', 'GET'])
 def pendanaan_form_pemberian_page(loan_id):
     loan_detail = Loan.query.filter_by(id=loan_id).first()
+    total_loan = session.get('total_loan', None)
+    percentage = session.get('percentage', None)
 
-    print(loan_detail)
+    print('Total Loan :', total_loan)
+    print('Percentage:', percentage) 
 
     form = LendingForm()
     
@@ -168,9 +186,13 @@ def pendanaan_form_pemberian_page(loan_id):
         db.session.add(lendingTr)
         db.session.commit()
 
+        # Clear session
+        session.pop('total_loan')
+        session.pop('percentage')
+
         return redirect(url_for('pendanaan_detail_page', loan_id = loan_id))
 
-    return render_template('pendanaan/form-pemberian.html', form=form, loanDetail = loan_detail)
+    return render_template('pendanaan/form-pemberian.html', form=form, loanDetail = loan_detail, totalLoan = total_loan, percentage = percentage) 
 
 @app.route('/pinjaman')
 def pinjaman_main_page():

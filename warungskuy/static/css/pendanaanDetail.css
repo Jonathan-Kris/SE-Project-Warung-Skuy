@@ -191,6 +191,10 @@ body {
     border-radius: 1.5rem;
 }
 
+.error-msg{
+    color:red;
+}
+
 @media all and (max-width: 575.98px){
     .business-banner {
         padding: 2rem 1rem;
