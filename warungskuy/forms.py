@@ -129,5 +129,5 @@ class LoanForm(FlaskForm):
     submit = SubmitField(label="Proses Peminjaman")
 
 class LendingForm(FlaskForm):
-    lending_amount = IntegerField(label="Nominal Pinjaman", validators=[])
+    lending_amount = IntegerField(label="Nominal Pinjaman", validators=[NumberRange(min=100000)])
     submit = SubmitField(label="Proses")
