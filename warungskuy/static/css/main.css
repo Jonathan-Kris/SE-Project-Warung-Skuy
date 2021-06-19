@@ -11,6 +11,26 @@
   margin: 2rem 0;
 }
 
+.btn-primary {
+  background-color: #f4d160;
+  border-color: #f4d160;
+  color: black;
+  font-size: larger;
+  border-radius: 2rem;
+  width: 15rem;
+  height: 3rem;
+}
+
+.btn-primary:hover {
+  background-color: #8ac4d0;
+  border-color: #8ac4d0;
+  color: white;
+  font-size: larger;
+  border-radius: 2rem;
+  width: 15rem;
+  height: 3rem;
+}
+
 .banner-content i {
   font-weight: bold;
 }
