@@ -52,8 +52,7 @@
 <section class="pendanaan container">
   <h1>Pendanaan Yang Berlangsung</h1>
   <div class="row d-flex align-items-center flex-wrap">
-    {% if countItemsOngoing > 0 %} 
-    {% for item in itemsOngoing %}
+    {% if countItemsOngoing > 0 %} {% for item in itemsOngoing %}
     <div class="col-4">
       <div class="card">
         <a href="{{ url_for('pendanaan_detail_page', loan_id= item.id) }}">
@@ -93,13 +92,12 @@
 </section>
 <section class="pendanaan container">
   <h1>Pendanaan Yang Berhasil</h1>
-  feature under development
-  <!-- <div class="row">
+  <div class="row">
     <div class="col-4">
-      <div class="card">
+      <div class="card mb-3">
         <img
           class="card-img-top"
-          src="../assets/images/pages/pendanaan/Card-img.png"
+          src="{{base_path_css}}/assets/images/pages/pendanaan/Card-img.png"
           alt="Card image cap"
         />
         <div class="card-body">
@@ -133,7 +131,7 @@
         </div>
       </div>
     </div>
-  </div> -->
+  </div>
 </section>
 {% else %}
 <section class="banner">
