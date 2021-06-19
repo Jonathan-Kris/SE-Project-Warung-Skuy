@@ -5,6 +5,12 @@
 %} {% if current_user.is_authenticated %}
 
 <section class="pendanaan container">
+  <div class="d-flex justify-content-center">
+    <a href="/pinjaman/pengajuan">
+      <button class="btn btn-primary my-5">Ajukan Peminjaman</button></a
+    >
+  </div>
+
   <h1>Daftar Peminjaman Saat Ini</h1>
   <div class="row">
     {% if countItemsPinjamanUser > 0 %} {% for item in itemsPinjamanUser %}
@@ -74,7 +80,7 @@
   </div>
   <div>
     {% if countItemsPinjamanUser > 0 %} {% for item in itemsPinjamanUser %}
-    <div class="eclipse-pill row">
+    <div class="eclipse-pill row mb-2">
       <div class="content col-2 number text-center">{{item.loan_id}}</div>
       <div class="content pl-2 col-7">Rp. {{item.lending_amount}}</div>
       <div class="content pr-2 col-3 text-right">17 Agustus 2021</div>
