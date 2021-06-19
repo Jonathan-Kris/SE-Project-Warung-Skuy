@@ -67,7 +67,6 @@ class Borrower(User, UserMixin):
 
 
 class Loan(db.Model):
-    # id = db.Column(db.Integer, primary_key=True)
     id = db.Column(db.String(length=32), primary_key=True, default=str(uuid.uuid4()))
     title = db.Column(db.String(length=75))
     tenor = db.Column(db.Integer)
@@ -85,8 +84,6 @@ class Loan(db.Model):
     gross_income = db.Column(db.Integer)
     net_income = db.Column(db.Integer)
     modal = db.Column(db.Integer)
-    # Fund Collected
-    # fund_collected = db.Column(db.Integer) # Aggregate value, cek apakah SQLAlchemy ada function aggregate
     # Timestamp
     created_at = db.Column(db.DateTime(timezone=True), server_default=func.now())
 

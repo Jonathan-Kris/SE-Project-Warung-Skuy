@@ -26,8 +26,8 @@ def register_page():
 
         user_to_create = Lender(username=lenderForm.username.data,
                                 email=lenderForm.email.data,
-                                # password=lenderForm.password1.data, #DISABLE FOR TESTING PURPOSE ONLY
-                                password_hash=borrowerForm.password1.data,
+                                password=lenderForm.password1.data,  # FOR PRODUCTION, PASSWORD HASHED
+                                # password_hash=borrowerForm.password1.data, #PASSWORD UNHASH, FOR TESTING PURPOSE
                                 phone_number=lenderForm.phone_number.data,
                                 fullname=lenderForm.fullname.data,
                                 nik=lenderForm.nik.data,
@@ -52,8 +52,8 @@ def register_page():
         user_to_create = Borrower(
             username=borrowerForm.username.data,
             email=borrowerForm.email.data,
-            # password=borrowerForm.password1.data, #DISABLE FOR TESTING PURPOSE ONLY
-            password_hash=borrowerForm.password1.data,
+            password=borrowerForm.password1.data,  # FOR PRODUCTION, PASSWORD HASHED
+            # password_hash=borrowerForm.password1.data, #PASSWORD UNHASH, FOR TESTING PURPOSE
             phone_number=borrowerForm.phone_number.data,
             fullname=borrowerForm.fullname.data,
             birth_place=borrowerForm.birth_place.data,
@@ -93,12 +93,11 @@ def login_page():
             flash(f"Oops! Sorry there are problems detecting the user")
 
         # print(attempted_user.password_hash)
-        # DISABLED FOR EASE OF TESTING PURPOSE
-        # if attempted_user and attempted_user.check_password_correction(
-        #     attempted_password=form.password.data
-        # ):
+        # FOR TESTING PURPOSE
+        # if (attempted_user and attempted_user.password_hash == form.password.data):
 
-        if (attempted_user and attempted_user.password_hash == form.password.data):
+        # PRODUCTION
+        if attempted_user and attempted_user.check_password_correction(attempted_password=form.password.data):
             login_user(attempted_user)
             print('Current User : ', current_user.username)
             flash(
